@@ -26,11 +26,11 @@ tasks.withType(JavaCompile) {
 
 application {
   mainModule = 'org.gwajae.accountbook'
-  mainClass = 'org.gwajae.accountbook.HelloApplication'
+  mainClass = 'org.gwajae.accountbook.Main'
 }
 
 javafx {
-  version = '22.0.1'
+  version = '23.0.1'
   modules = ['javafx.controls', 'javafx.fxml']
 }
 
@@ -38,6 +38,9 @@ dependencies {
 
   testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
   testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
+  // https://mvnrepository.com/artifact/com.mysql/mysql-connector-j
+  implementation group: 'com.mysql', name: 'mysql-connector-j', version: '8.3.0'
+
 }
 
 test {
