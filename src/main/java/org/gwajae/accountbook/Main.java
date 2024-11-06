@@ -1,8 +1,10 @@
 package org.gwajae.accountbook;
 
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
@@ -10,9 +12,11 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import org.gwajae.accountbook.controller.CalendarModalController;
 import org.gwajae.accountbook.model.Calendar;
 import org.gwajae.accountbook.model.CalendarService;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.TextStyle;
@@ -26,76 +30,84 @@ public class Main extends Application {
     private GridPane calendarGrid; // 달력 그리드
     private List<Calendar> calendars = new ArrayList<Calendar>();
 
+//    @Override
+//    public void start(Stage primaryStage){
+//        CalendarService calendarService = new CalendarService();
+//        calendars = calendarService.read();
+//        // 달력을 그릴 GridPane 생성
+//        calendarGrid = new GridPane();
+//        calendarGrid.setHgap(0); // 열 간격을 얇은 선으로 설정
+//        calendarGrid.setVgap(0); // 행 간격을 얇은 선으로 설정
+//        calendarGrid.setPadding(new Insets(20, 20, 20, 20)); // 패딩 추가
+//        //ASas
+//        ///aaaaa
+//        // 좌상단 월 이동 버튼과 영어 달 이름 레이블
+//        HBox header = new HBox(10);
+//        header.setAlignment(Pos.CENTER_LEFT);
+//        Button prevButton = new Button("<");
+//        Button nextButton = new Button(">");
+//        monthLabel = new Label(); // 영어 달 이름 표시
+//        monthLabel.setFont(new Font("Arial", 20));
+//        header.getChildren().addAll(prevButton, monthLabel, nextButton);
+//
+//        prevButton.setOnAction(e -> {
+//            currentMonth--;
+//            if (currentMonth < 1) {
+//                currentMonth = 12;
+//
+//                currentYear--;
+//            }
+//            updateCalendar();
+//        });
+//
+//        nextButton.setOnAction(e -> {
+//            currentMonth++;
+//            if (currentMonth > 12) {
+//                currentMonth = 1;
+//                currentYear++;
+//            }
+//            updateCalendar();
+//        });
+//
+//        CalendarModalController modal = new CalendarModalController();
+//
+//        Button addTransactionButton = new Button("기록하기");
+//        addTransactionButton.setFont(new Font("Arial", 16)); // 버튼 폰트 크기 설정
+//        addTransactionButton.setTextFill(Color.WHITE);
+//        addTransactionButton.setBackground(new Background(new BackgroundFill(Color.web("#2e7d32"), new CornerRadii(10), Insets.EMPTY))); // 녹색 배경 및 둥근 모서리
+//        addTransactionButton.setOnAction(e -> modal.showDialog(primaryStage));
+//
+//        // '기록하기' 버튼을 우상단에 배치하기 위한 레이아웃
+//        HBox topRightBox = new HBox(addTransactionButton);
+//        topRightBox.setAlignment(Pos.TOP_RIGHT); // 우측 정렬
+//        topRightBox.setPadding(new Insets(10, 20, 10, 20)); // 패딩 추가
+//
+//        // 달력 레이아웃
+//        VBox calendarLayout = new VBox(20);
+//        calendarLayout.setAlignment(Pos.CENTER);
+//        calendarLayout.getChildren().add(calendarGrid);
+//
+//        // BorderPane을 사용하여 컴포넌트를 배치
+//        BorderPane rootLayout = new BorderPane();
+//        rootLayout.setTop(new HBox(header, topRightBox)); // 상단에 월/년도와 기록하기 버튼 배치
+//        rootLayout.setCenter(calendarLayout); // 가운데에 달력 배치
+//
+//        // 초기 달력 생성
+//        updateCalendar();
+//
+//        // Scene 생성 및 스타일 적용
+//        Scene scene = new Scene(rootLayout, 800, 800);
+//        primaryStage.setScene(scene);
+//        primaryStage.setTitle("가계부 어플리케이션");
+//        primaryStage.show();
+//    }
+
     @Override
-    public void start(Stage primaryStage)
-    {
-        CalendarService calendarService = new CalendarService();
-        calendars = calendarService.read();
-        // 달력을 그릴 GridPane 생성
-        calendarGrid = new GridPane();
-        calendarGrid.setHgap(0); // 열 간격을 얇은 선으로 설정
-        calendarGrid.setVgap(0); // 행 간격을 얇은 선으로 설정
-        calendarGrid.setPadding(new Insets(20, 20, 20, 20)); // 패딩 추가
-        //ASas
-        ///aaaaa
-        // 좌상단 월 이동 버튼과 영어 달 이름 레이블
-        HBox header = new HBox(10);
-        header.setAlignment(Pos.CENTER_LEFT);
-        Button prevButton = new Button("<");
-        Button nextButton = new Button(">");
-        monthLabel = new Label(); // 영어 달 이름 표시
-        monthLabel.setFont(new Font("Arial", 20));
-        header.getChildren().addAll(prevButton, monthLabel, nextButton);
+    public void start(Stage primaryStage) throws Exception {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("main.fxml")));
+        Scene scene = new Scene(root);
 
-        prevButton.setOnAction(e -> {
-            currentMonth--;
-            if (currentMonth < 1) {
-                currentMonth = 12;
-
-                currentYear--;
-            }
-            updateCalendar();
-        });
-
-        nextButton.setOnAction(e -> {
-            currentMonth++;
-            if (currentMonth > 12) {
-                currentMonth = 1;
-                currentYear++;
-            }
-            updateCalendar();
-        });
-
-        Button addTransactionButton = new Button("기록하기");
-        addTransactionButton.setFont(new Font("Arial", 16)); // 버튼 폰트 크기 설정
-        addTransactionButton.setTextFill(Color.WHITE);
-        addTransactionButton.setBackground(new Background(new BackgroundFill(Color.web("#2e7d32"), new CornerRadii(10), Insets.EMPTY))); // 녹색 배경 및 둥근 모서리
-        addTransactionButton.setOnAction(e -> {
-            System.out.println("기록하기 버튼 클릭됨");
-        });
-
-        // '기록하기' 버튼을 우상단에 배치하기 위한 레이아웃
-        HBox topRightBox = new HBox(addTransactionButton);
-        topRightBox.setAlignment(Pos.TOP_RIGHT); // 우측 정렬
-        topRightBox.setPadding(new Insets(10, 20, 10, 20)); // 패딩 추가
-
-        // 달력 레이아웃
-        VBox calendarLayout = new VBox(20);
-        calendarLayout.setAlignment(Pos.CENTER);
-        calendarLayout.getChildren().add(calendarGrid);
-
-        // BorderPane을 사용하여 컴포넌트를 배치
-        BorderPane rootLayout = new BorderPane();
-        rootLayout.setTop(new HBox(header, topRightBox)); // 상단에 월/년도와 기록하기 버튼 배치
-        rootLayout.setCenter(calendarLayout); // 가운데에 달력 배치
-
-        // 초기 달력 생성
-        updateCalendar();
-
-        // Scene 생성 및 스타일 적용
-        Scene scene = new Scene(rootLayout, 800, 800);
         primaryStage.setScene(scene);
-        primaryStage.setTitle("가계부 어플리케이션");
         primaryStage.show();
     }
 
@@ -144,7 +156,7 @@ public class Main extends Application {
         }
 
         // 달력 고정된 6x7 구조를 유지하고 날짜 추가
-        int totalCells = 7 * 6; // 7일 x 6주 = 42칸을 고정으로 사용
+        int totalCells = 7 * 5; // 7일 x 6주 = 42칸을 고정으로 사용
 
         for (int i = 0; i < totalCells; i++) {
             VBox dayBox = new VBox();
@@ -163,7 +175,6 @@ public class Main extends Application {
                 }
                 else date = currentYear + "-" + currentMonth + "-" + day;
 
-                System.out.println();
                 Label dateLabel = new Label(day + " ");
                 dateLabel.setFont(new Font("Arial", 17)); // 날짜 폰트 설정
                 dateLabel.setTextFill(Color.web("#006600")); // 날짜 텍스트 색상
@@ -172,18 +183,14 @@ public class Main extends Application {
                 for (Calendar calendar : calendars) {
                     if(Objects.equals(calendar.getDate(), date)) {
                         if(Objects.equals(calendar.getType(), "수입")) {
-                            dayBox.getChildren().add(new Label("+" + calendar.getAmount()));
+                            dayBox.getChildren().add(new Button("+" + calendar.getAmount()));
                         }
                         else if(Objects.equals(calendar.getType(), "지출")) {
-                            dayBox.getChildren().add(new Label("-" + calendar.getAmount()));
+                            dayBox.getChildren().add(new Button("-" + calendar.getAmount()));
                         }
 
                     }
                 }
-
-                // 날짜 클릭 시 입력 폼 창을 여는 이벤트 추가
-                int selectedDay = day; // 선택한 날짜 변수
-                dayBox.setOnMouseClicked(e -> openTransactionForm(selectedDay));
 
                 dayBox.setBackground(defaultBackground); // 해당 날짜는 기본 배경 사용
             }
@@ -194,10 +201,13 @@ public class Main extends Application {
     }
 
     // 선택된 날짜에 대해 거래 폼을 여는 메소드
-    private void openTransactionForm(int day) {
+    private void openTransactionForm() {
         Stage formStage = new Stage();
         formStage.initModality(Modality.APPLICATION_MODAL); // 모달 창
-        formStage.setTitle(day + "일 거래 내역 입력");
+        formStage.setTitle("거래 입력");
+
+        DatePicker datePicker = new DatePicker();
+        datePicker.setValue(LocalDate.now());
 
         // 수입/지출 선택
         ToggleGroup typeGroup = new ToggleGroup();
@@ -234,13 +244,18 @@ public class Main extends Application {
             String amount = amountField.getText();
             String memo = memoField.getText();
             String category = categoryBox.getValue();
+            LocalDate locale_date = datePicker.getValue();
+            Date date = java.sql.Date.valueOf(locale_date);
 
             // 폼에서 입력한 데이터를 처리하는 로직 (임시로 콘솔에 출력)
-            System.out.println("날짜: " + day);
-            System.out.println("유형: " + type);
-            System.out.println("금액: " + amount);
-            System.out.println("메모: " + memo);
-            System.out.println("분류: " + category);
+
+            Calendar inputs = new Calendar("666666", "1", type, category, Integer.parseInt(amount), date, memo);
+
+            System.out.println("날짜: " + inputs.getDate());
+            System.out.println("유형: " + inputs.getType());
+            System.out.println("금액: " + inputs.getAmount());
+            System.out.println("메모: " + inputs.getDescription());
+            System.out.println("분류: " + inputs.getCategory());
 
             formStage.close(); // 창 닫기
         });
@@ -257,7 +272,7 @@ public class Main extends Application {
         VBox formLayout = new VBox(10);
         formLayout.setPadding(new Insets(20));
         formLayout.setAlignment(Pos.CENTER_LEFT);
-        formLayout.getChildren().addAll(new Label(day + "일 거래 내역 입력"), amountField, typeBox, categoryBox, memoField, buttonBox);
+        formLayout.getChildren().addAll(datePicker, amountField, typeBox, categoryBox, memoField, buttonBox);
 
         Scene formScene = new Scene(formLayout, 400, 400);
         formStage.setScene(formScene);
@@ -266,6 +281,6 @@ public class Main extends Application {
 
     // 메인 메소드
     public static void main(String[] args) {
-        launch(args); // JavaFX 애플리케이션 실행
+        launch(args);
     }
 }

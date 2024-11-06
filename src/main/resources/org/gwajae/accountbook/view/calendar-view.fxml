@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.gwajae.accountbook.controller.CalendarController"
+            prefHeight="600" prefWidth="650.0" id="calendar">
+    <top>
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <Button fx:id="prevButton" id="monthButton"/>
+            <Label fx:id="monthLabel" textFill="black" />
+            <Button fx:id="nextButton" id="monthButton" />
+            <Pane HBox.hgrow="ALWAYS" />
+            <Button fx:id="calendarModal" text="+ 기록하기" id="calendarModal" />
+        </HBox>
+    </top>
+    <center>
+        <VBox spacing="20" alignment="CENTER">
+            <GridPane fx:id="calendarGrid" alignment="CENTER">
+                <padding>
+                    <Insets top="20" right="20" bottom="20" left="20" />
+                </padding>
+            </GridPane>
+        </VBox>
+    </center>
+</BorderPane>

@@ -13,7 +13,7 @@ public class CalendarService {
     private final String URL = "jdbc:mysql://localhost:3306/account_db";
     private final String DRIVER = "com.mysql.cj.jdbc.Driver";
     private final String USER = "root";
-    private final String PASS = "IC072318jj!!";
+    private final String PASS = "1234";
 
     public void create(Calendar calendar) {
         String sql = "INSERT INTO calendar (" +
@@ -48,7 +48,6 @@ public class CalendarService {
     public List<Calendar> read() {
         List<Calendar> calendars = new ArrayList<>();
         String sql = "select * from calendar";
-
 
         try {
             Class.forName(DRIVER);

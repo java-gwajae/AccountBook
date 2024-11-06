@@ -1,0 +1,110 @@
+#currentMonth {
+    -fx-text-fill: black;
+    -fx-font-size: 24px;
+    -fx-font-weight: 700;
+}
+
+#month-header {
+    -fx-background-color: #c3eebf;
+    -fx-border-radius: 8px 8px 0px 0px;
+    -fx-padding: 0px;
+}
+
+#date-cell {
+    -fx-border-width: 1px;
+    -fx-border-color: #ddd;
+    -fx-border-style: hidden solid solid hidden;
+    -fx-pref-width: 100px;
+    -fx-pref-height: 110px;
+}
+
+#date-start {
+    -fx-border-width: 1px;
+    -fx-border-color: #ddd;
+    -fx-border-style: hidden solid solid solid;
+}
+
+#calendar {
+    -fx-font-family: "Noto Sans KR";
+}
+
+#date-day {
+    -fx-padding: 4px 5px;
+}
+
+#date-today {
+    -fx-background-color: #c3eebf50;
+    -fx-border-width: 1px;
+    -fx-border-color: #ddd;
+    -fx-border-style: hidden solid solid hidden;
+    -fx-pref-width: 100px;
+    -fx-pref-height: 110px;
+}
+
+#date-start-today {
+    -fx-background-color: #c3eebf50;
+    -fx-border-width: 1px;
+    -fx-border-color: #ddd;
+    -fx-border-style: hidden solid solid solid;
+    -fx-pref-width: 100px;
+    -fx-pref-height: 110px;
+}
+
+#n-date-cell {
+    -fx-background-color: #ededed;
+    -fx-border-width: 1px;
+    -fx-border-color: #ddd;
+    -fx-border-style: hidden solid solid hidden;
+    -fx-pref-width: 100px;
+    -fx-pref-height: 110px;
+}
+
+#n-date-start {
+    -fx-background-color: #ededed;
+    -fx-border-width: 1px;
+    -fx-border-color: #ddd;
+    -fx-border-style: hidden solid solid solid;
+    -fx-pref-width: 100px;
+    -fx-pref-height: 110px;
+}
+
+#n-date-error {
+    -fx-background-color: #ededed;
+    -fx-border-width: 1px;
+    -fx-border-color: #ddd;
+    -fx-border-style: hidden solid solid solid;
+    -fx-pref-width: 100px;
+    -fx-pref-height: 110px;
+}
+
+#monthButton {
+    -fx-max-width: 10px;
+    -fx-max-height: 10px;
+    -fx-background-color: #55a349;
+    -fx-text-fill: white;
+    -fx-shape: "M 50, 0 A 50, 50 0 1, 1 49.9, 0 Z";
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 4, 0, 2, 2);
+}
+
+#calendarModal {
+    -fx-padding: 10px 18px;
+    -fx-background-radius: 20px;
+    -fx-max-height: 20px;
+    -fx-background-color: #55a349;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-alignment: center;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 4, 0, 2, 2);
+}
+
+#income {
+    -fx-background-color: rgb(215, 237, 249);
+    -fx-text-fill: rgb(35, 153, 220);
+    -fx-pref-width: 110px;
+}
+
+#outcome {
+    -fx-background-color: rgb(251, 204, 204);
+    -fx-text-fill: rgb(235, 51, 51);
+    -fx-pref-width: 110px;
+}

@@ -1,0 +1,30 @@
+#submit {
+    -fx-background-radius: 6px;
+    -fx-pref-height: 26px;
+    -fx-padding: 6px 16px;
+    -fx-background-color: #55a349;
+    -fx-font-size: 11px;
+    -fx-cursor: pointer;
+}
+
+#submit:hover {
+    -fx-background-color: #22631c;
+    -fx-border-color: #22631c;
+    -fx-background-radius: 6px;
+}
+
+#cancel {
+    -fx-pref-height: 26px;
+    -fx-padding: 6px 10px;
+    -fx-background-color: transparent;
+    -fx-font-size: 11px;
+    -fx-cursor: pointer;
+    -fx-end-margin: 8px;
+    -fx-border-radius: 6px;
+    -fx-border-color: #bfbfbf;
+}
+
+#cancel:hover {
+    -fx-opacity: 0.7;
+    -fx-background-radius: 6px;
+}
