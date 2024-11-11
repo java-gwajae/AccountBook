@@ -6,9 +6,63 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import javafx.collections.FXCollections?>
 <AnchorPane prefHeight="400.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
             maxWidth="300" maxHeight="400" fx:controller="org.gwajae.accountbook.controller.CalendarModalController">
-   <children>
+   <VBox id="modal">
+      <Label text="기록하기" id="title" />
+      <VBox id="contentWrap">
+         <Label text="금액" id="contentLabel" />
+         <HBox spacing="5" alignment="CENTER_LEFT">
+            <TextField fx:id="amount" id="priceInput" promptText="금액을 입력하세요" prefWidth="200" />
+            <Label text="원" id="won" />
+         </HBox>
+      </VBox>
 
-   </children>
+      <VBox id="contentWrap">
+         <Label text="분류" id="contentLabel"  />
+         <HBox id="categoryWrap" spacing="15" alignment="CENTER_LEFT">
+            <ToggleButton fx:id="incomeButton" id="formCheck" mnemonicParsing="false" text="수입" onAction="#selectType" >
+               <toggleGroup>
+                  <ToggleGroup />
+               </toggleGroup>
+            </ToggleButton>
+            <ToggleButton fx:id="outcomeButton" onAction="#selectType" id="formCheck" mnemonicParsing="false" text="지출">
+               <toggleGroup>
+                  <ToggleGroup />
+               </toggleGroup>
+            </ToggleButton>
+         </HBox>
+      </VBox>
+
+      <VBox>
+         <Label text="카테고리" id="contentLabel"  />
+         <ComboBox onAction="#comboChange" id="comboBox" fx:id="comboBox" promptText="카테고리 선택">
+            <items>
+               <FXCollections fx:factory="observableArrayList">
+                  <String fx:value="월급" />
+                  <String fx:value="교통비" />
+                  <String fx:value="식비" />
+                  <String fx:value="기타" />
+               </FXCollections>
+            </items>
+         </ComboBox>
+      </VBox>
+
+      <VBox id="contentWrap">
+         <Label text="날짜" id="contentLabel"  />
+         <DatePicker id="datePicker" fx:id="datePicker" prefWidth="200" />
+      </VBox>
+
+      <VBox id="contentWrap">
+         <Label text="메모" id="contentLabel"  />
+         <TextArea id="memoInput" fx:id="memoField" promptText="메모를 입력하세요" prefWidth="250" prefHeight="80" />
+      </VBox>
+
+      <HBox id="btnWrap" alignment="CENTER_RIGHT">
+         <Button text="작성 완료" prefWidth="80" id="submit" />
+         <Button text="취소" prefWidth="80" id="cancel" />
+      </HBox>
+
+   </VBox>
 </AnchorPane>

@@ -1,13 +1,8 @@
 package org.gwajae.accountbook.model;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.Reader;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class CalendarService {
     private final String URL = "jdbc:mysql://localhost:3306/account_db";

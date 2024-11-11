@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 import org.gwajae.accountbook.model.Calendar;
 import org.gwajae.accountbook.model.CalendarService;
 
@@ -37,6 +38,12 @@ public class CalendarController implements Initializable {
     private int currentYear;
     private int currentMonth;
 
+    private Stage primaryStage;
+
+    public void setPrimaryStage(Stage primaryStage) {
+        this.primaryStage = primaryStage;
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         currentYear = LocalDate.now().getYear();
@@ -46,6 +53,11 @@ public class CalendarController implements Initializable {
         nextButton.setText(">");
 
         updateCalendar();
+
+        calendarModal.setOnAction(e -> {
+            CalendarModalController modal = new CalendarModalController();
+            modal.showDialog(primaryStage);
+        });
 
         prevButton.setOnAction(e -> {
             currentMonth--;
@@ -166,6 +178,7 @@ public class CalendarController implements Initializable {
                 dayLabel.setText(day + "");
                 dayLabel.setId("date-day");
                 dayBox.setId("n-date-cell");
+                dayLabel.setTextFill(Color.web("black"));
 
                 if (i == 0)
                     dayBox.setId("n-date-start");
@@ -182,6 +195,8 @@ public class CalendarController implements Initializable {
                 dayLabel.setText(day + "");
                 dayLabel.setId("date-day");
                 dayBox.setId("n-date-cell");
+                dayLabel.setTextFill(Color.web("black"));
+
 
                 if (i == 34)
                     dayBox.setId("n-date-error");

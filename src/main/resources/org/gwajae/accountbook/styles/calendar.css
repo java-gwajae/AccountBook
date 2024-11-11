@@ -57,6 +57,8 @@
     -fx-border-style: hidden solid solid hidden;
     -fx-pref-width: 100px;
     -fx-pref-height: 110px;
+    -fx-text-fill: #ddd;
+
 }
 
 #n-date-start {
@@ -66,6 +68,8 @@
     -fx-border-style: hidden solid solid solid;
     -fx-pref-width: 100px;
     -fx-pref-height: 110px;
+    -fx-text-fill: #ddd;
+
 }
 
 #n-date-error {
@@ -75,6 +79,7 @@
     -fx-border-style: hidden solid solid solid;
     -fx-pref-width: 100px;
     -fx-pref-height: 110px;
+    -fx-text-fill: #ddd;
 }
 
 #monthButton {
