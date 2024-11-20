@@ -62,8 +62,12 @@ public class Calendar {
         this.amount = amount;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return new SimpleDateFormat("yyyy-MM-dd").format(date);
+    }
+
+    public date getPureDate() {
+        return date;
     }
 
     public void setDate(Date date) {
