@@ -34,7 +34,7 @@ public class MonthtabController implements Initializable {
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
         more.setOnAction(e -> {
-            MonthtabModal modal = new MonthtabModal();
+            MonthtabModalController modal = new MonthtabModalController();
             modal.showDialog(primaryStage);
         });
 
