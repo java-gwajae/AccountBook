@@ -79,10 +79,19 @@ public class EntryModalController implements Initializable {
     }
 
     public void loadDetailView(Calendar entry) {
-        this.date.setText(entry.getDate());
-        this.amount.setText(String.valueOf(entry.getAmount()));
+        date.setText(entry.getDate());
+        amount.setText(String.valueOf(entry.getAmount()));
 
-        this.category.getSelectionModel().select(2);
+        if(entry.getCategory().equals("월급") { 
+                category.getSelectionModel().select(1);    
+        } else if(entry.getCategory().equals("교통비") { 
+                category.getSelectionModel().select(2);    
+        } else if(entry.getCategory().equals("식비") { 
+                category.getSelectionModel().select(3);    
+        } else {
+                category.getSelectionModel().select(4);    
+        }
+
         this.entry = entry;
 
         if(!buttonp) {
@@ -135,7 +144,10 @@ public class EntryModalController implements Initializable {
         double thisavg = Double.parseDouble(amount.getText());
 
         monthamount.setText("평균 " + this.type.getText() + " : " + String.valueOf((int)monthavg));
-        thisamount.setText("10월 2일 : " + amount.getText());
+        
+        String pattern = "MM월 dd일 : ";
+        DateFormat df = new SimpleDateFormat(pattern);
+        thisamount.setText(df.format(entry.getPureDate()) + amount.getText());
 
         double diff = (monthavg - thisavg) / ((monthavg + thisavg) / 2) * 100;
         int diff2 = (int)Math.abs(diff);
