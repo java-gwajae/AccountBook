@@ -56,7 +56,7 @@ public class MonthtabController implements Initializable {
 
 
         for(Calendar calendar : calendarList) {
-                    if(calendar.getMonthYear().equals(currentYear + "-" + currentMonth)) {
+                    if(calendar.getYearMonth().equals(currentYear + "-" + currentMonth)) {
                         if(Objects.equals(calendar.getType(), "수입")) {
                             totalin += calendar.getAmount();
                         } else if(Objects.equals(calendar.getType(), "지출")) {
