@@ -1,4 +1,4 @@
-package org.gwajae.accountbook;
+package org.gwajae.accountbook.controller;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
