@@ -43,8 +43,6 @@ public class SideController implements Initializable {
     private int currentMonth;
     private int currentYear;
 
-    private String resource = "/org/gwajae/accountbook/view/";
-
     private Stage primaryStage;
 
     public void setPrimaryStage(Stage primaryStage) {
@@ -53,12 +51,14 @@ public class SideController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        String resource = "/org/gwajae/accountbook/";
+        
         try {
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(resource + "monthentry.fxml")));
-            sidemenu.getStylesheets().add(Objects.requireNonNull(getClass().getResource(resource + "sidemenu.css")).toString());
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(resource + "view/monthtab-view.fxml")));
+            sidemenu.getStylesheets().add(Objects.requireNonNull(getClass().getResource(resource + "style/side.css")).toString());
             monthview.getChildren().setAll(root);
 
-            MonthEntryController month = new MonthEntryController();
+            MonthtabController month = new MonthtabController();
             month.setPrimaryStage(primaryStage);
 
             ToggleGroup group = new ToggleGroup();
