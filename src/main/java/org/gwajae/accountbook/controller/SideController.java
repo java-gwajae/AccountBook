@@ -132,7 +132,7 @@ public class SideController implements Initializable {
 
         try {
             for (Calendar calendar : calendarList) {
-                if (calendar.getDate().equals(currentYear + "-" + currentMonth)) {
+                if (calendar.getMonthYear().equals(currentYear + "-" + currentMonth)) {
                     if(!selector.equals("전체")) {
                         if(!calendar.getType().equals(selector)) continue;
                     }
