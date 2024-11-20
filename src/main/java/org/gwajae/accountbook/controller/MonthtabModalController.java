@@ -72,8 +72,6 @@ public class MonthtabModal implements Initializable {
     private int currentMonth;
     private int currentYear;
 
-    private String resource = "/org/accountbook/menu/";
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         currentMonth = LocalDate.now().getMonthValue();
@@ -173,10 +171,10 @@ public class MonthtabModal implements Initializable {
 
     public void showDialog(Stage primaryStage) {
         try {
-            Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(resource + "monthdetailview.fxml")));
+            Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/org/accountbook/menu/viewmonthtab-modal.fxml")));
             Scene scene = new Scene(parent);
             Stage dialog = new Stage();
-            scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource(resource + "monthtab.css")).toString());
+            scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/org/accountbook/menu/style/monthtab.css")).toString());
 
 
             dialog.initModality(Modality.WINDOW_MODAL);
