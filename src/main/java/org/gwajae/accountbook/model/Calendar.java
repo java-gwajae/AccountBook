@@ -66,6 +66,10 @@ public class Calendar {
         return new SimpleDateFormat("yyyy-MM-dd").format(date);
     }
 
+    public String getYearMonth() {
+        return new SimpleDateFormat("yyyy-MM").format(date);
+    }
+
     public date getPureDate() {
         return date;
     }
