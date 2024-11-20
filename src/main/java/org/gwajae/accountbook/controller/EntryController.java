@@ -37,7 +37,7 @@ public class EntryController implements Initializable {
 
     private Stage primaryStage;
 
-    private Calendar entry = new Calendar("", "", "", 0, "", "");
+    private Calendar entry;
 
     public void setPrimaryStage(Stage primaryStage) {
         this.primaryStage = primaryStage;
@@ -49,7 +49,7 @@ public class EntryController implements Initializable {
             showDialog(primaryStage);
         });
 
-        updateEntry(new Calendar("", "", "", 0, "", ""), primaryStage);
+        updateEntry(new Calendar("", "", "", 0, new Date(), ""), primaryStage);
     }
 
     public void updateEntry(Calendar entry, Stage primaryStage) {
