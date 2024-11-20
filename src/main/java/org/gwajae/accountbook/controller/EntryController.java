@@ -84,7 +84,7 @@ public class EntryController implements Initializable {
             FXMLLoader fxmlLoader = new FXMLLoader();
             Parent parent = fxmlLoader.load(getClass().getResource("/org/gwajae/accountbook/view/entry-modal.fxml").openStream());
             Scene scene = new Scene(parent);
-            scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/org/gwajae/accountbook/style/detail.css")).toString());
+            scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/org/gwajae/accountbook/style/entry-modal.css")).toString());
             Stage dialog = new Stage();
 
             dialog.initModality(Modality.WINDOW_MODAL);
