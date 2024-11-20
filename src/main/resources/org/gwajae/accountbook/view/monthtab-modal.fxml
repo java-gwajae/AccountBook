@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Rectangle?>
+
+
+<AnchorPane id="background" styleClass="text" prefHeight="364.0" prefWidth="422.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.gwajae.accountbook.controller.MonthtabModalController"">
+   <children>
+      <AnchorPane id="bartab" layoutX="12.0" layoutY="188.0" prefHeight="165.0" prefWidth="372.0">
+         <children>
+            <BarChart fx:id="barchart" alternativeRowFillVisible="false" barGap="6.0" horizontalGridLinesVisible="false" horizontalZeroLineVisible="false" layoutX="123.0" layoutY="11.0" prefHeight="150.0" prefWidth="276.0" verticalGridLinesVisible="false" verticalZeroLineVisible="false">
+              <yAxis>
+                <CategoryAxis side="BOTTOM" tickLabelsVisible="false" tickMarkVisible="false" />
+              </yAxis>
+              <xAxis>
+                <NumberAxis minorTickVisible="false" side="LEFT" tickLabelsVisible="false" tickMarkVisible="false" />
+              </xAxis>
+            </BarChart>
+            <Label id="bartablabel" layoutX="14.0" layoutY="6.0" text="전체 금용"/>
+            <Label id="bartotal" fx:id="bartotal" layoutX="14.0" layoutY="46.0" />
+            <Label id="bardate" fx:id="bardate" layoutX="14.0" layoutY="33.0" prefHeight="17.0" prefWidth="48.0"/>
+            <Label id="percentlabel" layoutX="8.0" layoutY="135.0" text="지난달보다" textFill="#ababab"/>
+            <Label id="incomelabel" layoutX="112.0" layoutY="44.0" text="수입"/>
+            <Label id="outcomelabel" layoutX="112.0" layoutY="98.0" text="지출"/>
+            <Label id="percent" fx:id="diff" layoutX="67.0" layoutY="134.0"/>
+            <Label fx:id="income" layoutX="14.0" layoutY="77.0">
+               <graphic>
+                  <Rectangle id="incomeicon" arcHeight="5.0" arcWidth="5.0" height="7.0" stroke="BLACK" strokeType="INSIDE" width="8.0" />
+               </graphic>
+            </Label>
+            <Label fx:id="outcome" layoutX="14.0" layoutY="99.0">
+               <graphic>
+                  <Rectangle id="outcomeicon"  arcHeight="5.0" arcWidth="5.0" height="7.0" stroke="BLACK" strokeType="INSIDE" width="8.0" />
+               </graphic>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane id="pietab" layoutX="12.0" layoutY="14.0" prefHeight="165.0" prefWidth="310.0">
+         <children>
+            <PieChart fx:id="piechart" layoutX="102.0" layoutY="8.0" prefHeight="150.0" prefWidth="200.0" />
+            <Label id="pielabel" layoutX="14.0" layoutY="6.0" text="지출 내역"/>
+            <Label id="pietotal" fx:id="pietotal" layoutX="14.0" layoutY="42.0"/>
+            <Label id="piedate" fx:id="piedate" layoutX="14.0" layoutY="30.0" prefHeight="17.0" prefWidth="48.0"/>
+            <Label fx:id="categoryn1" layoutX="14.0" layoutY="66.0">
+               <graphic>
+                  <Circle fill="#b5ffcf" radius="4.0" stroke="#c7c7c7" strokeType="INSIDE" />
+               </graphic>
+            </Label>
+            <Label styleClass="text, category" fx:id="category1" layoutX="28.0" layoutY="80.0"/>
+            <Label fx:id="categoryn2" layoutX="14.0" layoutY="95.0">
+               <graphic>
+                  <Circle fill="#b5ffcf" radius="4.0" stroke="#c7c7c7" strokeType="INSIDE" />
+               </graphic>
+            </Label>
+            <Label styleClass="text, category" fx:id="category2" layoutX="28.0" layoutY="109.0"/>
+            <Label fx:id="categoryn3" layoutX="14.0" layoutY="124.0">
+               <graphic>
+                  <Circle fill="#b5ffcf" radius="4.0" stroke="#c7c7c7" strokeType="INSIDE" />
+               </graphic>
+            </Label>
+            <Label fx:id="category3" layoutX="28.0" layoutY="138.0"/>
+         </children>
+      </AnchorPane>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#b5ffcf" height="165.0" layoutX="332.0" layoutY="14.0" stroke="BLACK" strokeType="INSIDE" width="76.0" />
+   </children>
+</AnchorPane>
