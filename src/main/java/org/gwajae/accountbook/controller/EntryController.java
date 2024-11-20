@@ -82,7 +82,7 @@ public class EntryController implements Initializable {
     public void showDialog(Stage primaryStage) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
-            Parent parent = fxmlLoader.load(getClass().getResource("/org/gwajae/accountbook/view/detail-view.fxml").openStream());
+            Parent parent = fxmlLoader.load(getClass().getResource("/org/gwajae/accountbook/view/entry-modal.fxml").openStream());
             Scene scene = new Scene(parent);
             scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/org/gwajae/accountbook/style/detail.css")).toString());
             Stage dialog = new Stage();
