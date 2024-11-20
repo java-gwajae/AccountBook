@@ -63,7 +63,7 @@ public class Calendar {
     }
 
     public Date getDate() {
-        return this.date;
+        return new SimpleDateFormat("yyyy-MM-dd").format(date);
     }
 
     public void setDate(Date date) {
