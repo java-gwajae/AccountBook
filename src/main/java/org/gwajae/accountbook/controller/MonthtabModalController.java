@@ -171,10 +171,10 @@ public class MonthtabModal implements Initializable {
 
     public void showDialog(Stage primaryStage) {
         try {
-            Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/org/accountbook/menu/viewmonthtab-modal.fxml")));
+            Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/org/accountbook/menu/view/monthtab-modal.fxml")));
             Scene scene = new Scene(parent);
             Stage dialog = new Stage();
-            scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/org/accountbook/menu/style/monthtab.css")).toString());
+            scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/org/accountbook/menu/style/monthtab-modal.css")).toString());
 
 
             dialog.initModality(Modality.WINDOW_MODAL);
