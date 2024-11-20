@@ -44,6 +44,9 @@ public class EntryModalController implements Initializable {
     @FXML
     private Label avg;
 
+    @FXML
+    private TextArea memo;
+
     private Calendar entry;
     private int t;
     private int count = 1;
@@ -81,6 +84,7 @@ public class EntryModalController implements Initializable {
     public void loadDetailView(Calendar entry) {
         date.setText(entry.getDate());
         amount.setText(String.valueOf(entry.getAmount()));
+        memo.setText(entry.getDescription());
 
         if(entry.getCategory().equals("월급") { 
                 category.getSelectionModel().select(1);    
