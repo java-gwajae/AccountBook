@@ -58,7 +58,7 @@ public class EntryController implements Initializable {
 
         String pattern = "MM월 dd일";
         DateFormat df = new SimpleDateFormat(pattern);
-        this.date.setText(df.format(entry.getDate()));
+        this.date.setText(df.format(entry.getPureDate()));
 
         if(this.type.getText().equals("수입")) {
             this.amount.setText("+" + String.format("%,d", entry.getAmount()) + "원");
