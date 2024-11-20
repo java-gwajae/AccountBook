@@ -48,8 +48,6 @@ public class EntryController implements Initializable {
         detail.setOnAction(e -> {
             showDialog(primaryStage);
         });
-
-        updateEntry(new Calendar("", "", "", 0, new Date(), ""), primaryStage);
     }
 
     public void updateEntry(Calendar entry, Stage primaryStage) {
