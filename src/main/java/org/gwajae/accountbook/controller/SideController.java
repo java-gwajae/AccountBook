@@ -51,11 +51,9 @@ public class SideController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        String resource = "/org/gwajae/accountbook/";
-        
         try {
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(resource + "view/monthtab-view.fxml")));
-            sidemenu.getStylesheets().add(Objects.requireNonNull(getClass().getResource(resource + "style/side.css")).toString());
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(resource + "/org/gwajae/accountbook/view/monthtab-view.fxml")));
+            sidemenu.getStylesheets().add(Objects.requireNonNull(getClass().getResource(resource + "/org/gwajae/accountbook/style/side.css")).toString());
             monthview.getChildren().setAll(root);
 
             MonthtabController month = new MonthtabController();
@@ -137,7 +135,7 @@ public class SideController implements Initializable {
                         if(!calendar.getType().equals(selector)) continue;
                     }
                     FXMLLoader loader = new FXMLLoader();
-                    Pane p = loader.load(getClass().getResource("entry.fxml").openStream());
+                    Pane p = loader.load(getClass().getResource("entry-view.fxml").openStream());
 
                     EntryController entryController = loader.getController();
                     entryController.updateEntry(calendar, primaryStage);
