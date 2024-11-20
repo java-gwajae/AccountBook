@@ -47,6 +47,6 @@
          </children>
       </AnchorPane>
       <Label id="memolabel" layoutX="25.0" layoutY="353.0" prefHeight="28.0" prefWidth="65.0" text="메모" />
-      <TextArea id="memo" layoutX="25.0" layoutY="378.0" prefHeight="127.0" prefWidth="250.0" wrapText="true" />
+      <TextArea fx=id"memo" id="memo" layoutX="25.0" layoutY="378.0" prefHeight="127.0" prefWidth="250.0" wrapText="true" />
    </children>
 </AnchorPane>
