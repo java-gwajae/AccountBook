@@ -13,7 +13,7 @@ import javafx.scene.shape.Rectangle;
 import java.net.URL;
 import java.util.*;
 
-public class EntryDetailController implements Initializable {
+public class EntryModalController implements Initializable {
     @FXML
     private Button type;
 
