@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Rectangle?>
 
-<AnchorPane id="pane" fx:id="mainpane" prefHeight="530.0" prefWidth="300.0" styleClass="text" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.gwajae.accountbook.controller.EntryDetailController">
+<AnchorPane id="pane" fx:id="mainpane" prefHeight="530.0" prefWidth="300.0" styleClass="text" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.gwajae.accountbook.controller.EntryModalController">
    <children>
       <AnchorPane id="background" prefHeight="200.0" prefWidth="300.0">
          <children>
