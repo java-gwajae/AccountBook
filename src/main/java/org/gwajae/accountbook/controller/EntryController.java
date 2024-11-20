@@ -92,7 +92,7 @@ public class EntryController implements Initializable {
             dialog.setScene(scene);
             dialog.show();
 
-            DetailViewController dt = fxmlLoader.getController();
+            EntryModalController dt = fxmlLoader.getController();
             dt.loadDetailView(entry);
         } catch (IOException o) {
             System.out.println(o.getMessage());
