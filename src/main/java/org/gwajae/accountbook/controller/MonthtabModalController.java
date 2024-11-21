@@ -23,7 +23,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-public class MonthtabModal implements Initializable {
+public class MonthtabModalController implements Initializable {
     @FXML
     public Label diff;
 
