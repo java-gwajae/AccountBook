@@ -64,7 +64,7 @@
                   <Circle fill="#b5ffcf" radius="4.0" stroke="#c7c7c7" strokeType="INSIDE" />
                </graphic>
             </Label>
-            <Label fx:id="category3" layoutX="28.0" layoutY="138.0"/>
+            <Label styleClass="text, category" fx:id="category3" layoutX="28.0" layoutY="138.0"/>
          </children>
       </AnchorPane>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#b5ffcf" height="165.0" layoutX="332.0" layoutY="14.0" stroke="BLACK" strokeType="INSIDE" width="76.0" />
