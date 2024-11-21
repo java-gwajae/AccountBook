@@ -85,13 +85,11 @@ public class CalendarModalController implements Initializable {
 
     public void showDialog(Stage primaryStage) {
         try {
-            String resource = "/org/gwajae/accountbook/";
-
-            Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(resource + "view/calendar-modal.fxml")));
+            Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/org/gwajae/accountbook/view/calendar-modal.fxml")));
             Scene scene = new Scene(parent);
             Stage dialog = new Stage();
 
-            scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource(resource + "styles/calendar-modal.css")).toString());
+            scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/org/gwajae/accountbook/styles/calendar-modal.css")).toString());
 
             dialog.initModality(Modality.WINDOW_MODAL);
             dialog.initOwner(primaryStage);
