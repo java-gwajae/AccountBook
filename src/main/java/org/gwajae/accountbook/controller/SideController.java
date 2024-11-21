@@ -135,7 +135,7 @@ public class SideController implements Initializable {
                         if(!calendar.getType().equals(selector)) continue;
                     }
                     FXMLLoader loader = new FXMLLoader();
-                    Pane p = loader.load(getClass().getResource("entry-view.fxml").openStream());
+                    Pane p = loader.load(getClass().getResource("/org/gwajae/accountbook/view/entry-view.fxml").openStream());
 
                     EntryController entryController = loader.getController();
                     entryController.updateEntry(calendar, primaryStage);
