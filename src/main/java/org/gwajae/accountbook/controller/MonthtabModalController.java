@@ -148,7 +148,7 @@ public class MonthtabModalController implements Initializable {
 
         piechart.getData().addAll(pieChartData);
 
-        total = income + outcome;
+        total = income - outcome;
 
         bartotal.setText(String.format("%,d", total) + "원");
         this.income.setText(String.format("%,d", income) + "₩");
