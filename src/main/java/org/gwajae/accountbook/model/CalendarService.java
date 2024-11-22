@@ -60,7 +60,6 @@ public class CalendarService {
                 Date date = rs.getDate("date");
                 String description = rs.getString("description");
 
-
                 Calendar calendar = new Calendar(cid, uid, type, category, amount, date, description);
 
                 calendars.add(calendar);

@@ -57,6 +57,7 @@ public class CalendarController implements Initializable {
         calendarModal.setOnAction(e -> {
             CalendarModalController modal = new CalendarModalController();
             modal.showDialog(primaryStage);
+            updateCalendar();
         });
 
         prevButton.setOnAction(e -> {
@@ -78,7 +79,7 @@ public class CalendarController implements Initializable {
         });
     }
 
-    private void updateCalendar() {
+    public void updateCalendar() {
         calendarGrid.getChildren().clear();
 
         monthLabel.setText(currentYear + "년 " + currentMonth + "월");

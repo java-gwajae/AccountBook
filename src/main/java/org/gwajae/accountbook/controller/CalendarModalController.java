@@ -16,11 +16,15 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import org.apache.commons.lang3.RandomStringUtils;
+import org.gwajae.accountbook.model.Calendar;
+import org.gwajae.accountbook.model.CalendarService;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Objects;
-import java.util.ResourceBundle;
+import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.util.*;
 
 public class CalendarModalController implements Initializable {
 
@@ -34,10 +38,10 @@ public class CalendarModalController implements Initializable {
     private ToggleButton outcomeButton;
 
     @FXML
-    private Button submitButton;
+    private Button submit;
 
     @FXML
-    private Button cancelButton;
+    private Button cancel;
 
     @FXML
     private DatePicker datePicker;
@@ -53,6 +57,7 @@ public class CalendarModalController implements Initializable {
     public String type = "";
     private String category = "";
 
+    // Select Radiobutton
     @FXML
     public void selectType(ActionEvent event) {
         if(incomeButton.isSelected()) {
@@ -68,6 +73,7 @@ public class CalendarModalController implements Initializable {
         }
     }
 
+    // Chang ComboBox
     @FXML
     public void comboChange(ActionEvent event) {
         category = comboBox.getValue();
@@ -75,14 +81,42 @@ public class CalendarModalController implements Initializable {
 
     @FXML
     public void submitButton(ActionEvent event) {
+        String calendar_id = RandomStringUtils.randomAlphanumeric(8);
+        String user_id = "1";
+        int amount = Integer.parseInt(this.amount.getText());
+        LocalDate localDate = datePicker.getValue();
+        Date date = java.sql.Date.valueOf(localDate);
+        String memo = this.memoField.getText();
 
+        List<Calendar> calendars = new ArrayList<>();
+        CalendarService cs = new CalendarService();
+        calendars = cs.read();
+
+        for (Calendar calendar : calendars) {
+            if (Objects.equals(calendar.getCalendarId(), calendar_id)) {
+                calendar_id = RandomStringUtils.randomAlphanumeric(8);
+            }
+        }
+
+        cs.create(new Calendar(calendar_id, user_id, type, category, amount, date, memo));
+
+        Stage stage = (Stage) submit.getScene().getWindow();
+        stage.close();
     }
 
+    @FXML
+    public void cancelButton(ActionEvent event) {
+        Stage stage = (Stage) cancel.getScene().getWindow();
+        stage.close();
+    }
+
+    // ComboBox setting
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         comboBox.setItems(list);
     }
 
+    // Show calendar modal
     public void showDialog(Stage primaryStage) {
         try {
             String resource = "/org/gwajae/accountbook/";

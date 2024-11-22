@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
@@ -60,8 +58,8 @@
       </VBox>
 
       <HBox id="btnWrap" alignment="CENTER_RIGHT">
-         <Button text="작성 완료" prefWidth="80" id="submit" />
-         <Button text="취소" prefWidth="80" id="cancel" />
+         <Button text="작성 완료" prefWidth="80" fx:id="submit" onAction="#submitButton" id="submit" />
+         <Button text="취소" prefWidth="80" id="cancel" fx:id="cancel" onAction="#cancelButton" />
       </HBox>
 
    </VBox>
