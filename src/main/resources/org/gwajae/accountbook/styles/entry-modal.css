@@ -1,0 +1,107 @@
+.text {
+    -fx-font-family: "Malgun Gothic";
+}
+
+#pane {
+    -fx-border-radius: 20 20 20 20;
+    -fx-background-radius: 20 20 20 20;
+    -fx-background-color: #f2f2f2;
+}
+
+#background {
+    -fx-background-color: #bbfad2;
+    -fx-background-radius: 0 0 30 30;
+}
+
+#date {
+    -fx-font-size : 26;
+    -fx-font-weight: bold;
+    -fx-text-fill : WHITE;
+}
+
+#close {
+    -fx-font-size : 21;
+    -fx-text-fill : WHITE;
+}
+
+
+#mpane {
+    -fx-background-color: white;
+    -fx-background-radius: 20 20 20 20;
+    -fx-effect: dropshadow(gaussian, #e4e6e3, 0, 0, 1,  1);
+}
+
+#avg {
+    -fx-font-weight: bold;
+    -fx-font-size:12;
+    -fx-text-fill: #909090;
+}
+
+#amount  {
+    -fx-background-color: #f5f5f5;
+    -fx-background-radius: 20 0 0 20;
+    -fx-text-fill: black;
+    -fx-padding: -5 -5 -5 10;
+    -fx-font-size: 20;
+}
+
+#memo {
+    -fx-effect: dropshadow(gaussian, #e4e6e3, 0, 0, 1,  1);
+    -fx-background-color: white;
+    -fx-background-radius: 0 20 20 20;
+    -fx-border-radius : 0 20 20 20;
+    -fx-padding: 0 0 0 5;
+    -fx-border-color: white;
+}
+#memo  .scroll-pane {
+    -fx-background-color: transparent;
+}
+#memo  .scroll-pane .viewport{
+    -fx-background-color: transparent;
+}
+#memo  .scroll-pane .content{
+    -fx-background-color: transparent;
+}
+
+#memolabel {
+    -fx-alignment: center;
+    -fx-text-fill : white;
+    -fx-background-color: #bbfad2;
+    -fx-background-radius: 20 20 5 5;
+    -fx-border-radius : 20 20 5 5;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(gaussian, #e4e6e3, 0, 0, 1,  1);
+}
+
+#category {
+    -fx-border-width: 0 0 0 2;
+    -fx-border-color : #dadada;
+    -fx-font-weight: bold;
+    -fx-background-color: #f5f5f5;
+    -fx-background-radius : 0 20 20 0;
+    -fx-font-size: 14;
+}
+
+#category .list-view .list-cell {
+    -fx-background-color: #f5f5f5;
+    -fx-background-radius : 20 20 20 20;
+}
+
+#category .list-view {
+    -fx-background-color: #f5f5f5;
+    -fx-background-radius : 20 20 20 20;
+}
+
+#category .list-view .list-cell:hover {
+    -fx-background-color: #bbfad2;
+    fx-text-fill: #f5f5f5;
+}
+
+#category .list-view .list-cell:selected {
+    -fx-background-color : #bbfad2;
+    -fx-text-fill: white;
+}
+
+.chart-plot-background {
+    -fx-background-color: transparent;
+}

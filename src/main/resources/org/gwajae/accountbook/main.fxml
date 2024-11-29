@@ -13,4 +13,7 @@
    <children>
       <AnchorPane layoutX="64.0" layoutY="50.0" prefHeight="600.0" prefWidth="650.0" fx:id="calendarView" />
    </children>
+   <children>
+      <AnchorPane fx:id="sideView" />
+   </children>
 </AnchorPane>

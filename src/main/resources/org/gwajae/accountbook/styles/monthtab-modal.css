@@ -1,0 +1,82 @@
+.text {
+    -fx-font-family: "Malgun Gothic";
+}
+
+.category {
+    -fx-text-size: 10;
+    -fx-text-fill: #ababab;
+}
+
+#background {
+    -fx-background-radius: 20 20 20 20;
+    -fx-border-radius: 20 20 20 20;
+}
+
+#bartab {
+    -fx-background-color: white;
+    -fx-background-radius: 10 10 10 10;
+}
+
+#pietab {
+    -fx-background-color: white;
+    -fx-background-radius: 10 10 10 10;
+}
+
+#bartablabel {
+    -fx-font-size: 11;
+    -fx-text-fill: #ababab;
+}
+
+#percentlabel {
+    -fx-font-size: 11;
+    -fx-text-fill: #ababab;
+}
+
+#pielabel {
+    -fx-font-size: 11;
+    -fx-text-fill: #ababab;
+}
+
+#bartotal {
+    -fx-font-size: 16;
+}
+
+#pietotal {
+    -fx-font-size: 16;
+}
+
+#bardate {
+    -fx-font-size: 11;
+}
+
+#incomelabel {
+    -fx-font-size: 11;
+}
+
+#outcomelabel {
+    -fx-font-size: 11;
+}
+
+#piedate {
+    -fx-font-size: 11;
+}
+
+#incomelabel {
+    -fx-text-fill: #8aa8ff;
+}
+
+#outcomelabel {
+    -fx-text-fill: #ff8c8c;
+}
+
+#percent {
+    -fx-text-fill: #67bc73;
+}
+
+#incomeicon {
+    -fx-fill: #8aa8ff;
+}
+
+#outcomeicon {
+    -fx-fill: #ff8c8c;
+}

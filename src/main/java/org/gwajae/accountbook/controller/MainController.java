@@ -15,9 +15,13 @@ public class MainController implements Initializable {
     @FXML
     private AnchorPane calendarView;
 
+    @FXML
+    private AnchorPane sideView;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         loadCalendar();
+        loadSide();
     }
 
     private void loadCalendar() {
@@ -26,6 +30,19 @@ public class MainController implements Initializable {
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(resource + "view/calendar-view.fxml")));
             calendarView.getChildren().setAll(root);
             calendarView.getStylesheets().add(Objects.requireNonNull(getClass().getResource(resource + "styles/calendar.css")).toString());
+
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void loadSide() {
+        String resource = "/org/gwajae/accountbook/";
+        try {
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(resource + "view/side-view.fxml")));
+            sideView.getChildren().setAll(root);
+            sideView.getStylesheets().add(Objects.requireNonNull(getClass().getResource(resource + "styles/side.css")).toString());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
