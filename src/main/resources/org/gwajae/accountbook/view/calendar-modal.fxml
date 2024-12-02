@@ -6,7 +6,7 @@
 
 <?import javafx.collections.FXCollections?>
 <AnchorPane prefHeight="400.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-            maxWidth="300" maxHeight="400" fx:controller="org.gwajae.accountbook.CalendarModalController">
+            maxWidth="300" maxHeight="400" fx:controller=""org.gwajae.accountbook.controller.CalendarModalController">
    <VBox id="modal">
       <Label text="기록하기" id="title" />
       <VBox id="contentWrap">
