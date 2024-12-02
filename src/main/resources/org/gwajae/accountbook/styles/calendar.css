@@ -26,6 +26,9 @@
 
 #calendar {
     -fx-font-family: "Noto Sans KR";
+    -fx-background-color: white;
+    -fx-background-radius : 20;
+    -fx-background-insets : -20;
 }
 
 #date-day {
