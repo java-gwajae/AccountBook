@@ -4,7 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="entry" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="350.0" styleClass="text" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.gwajae.accountbook.controller.MonthtabController">
+<AnchorPane id="entry" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="350.0" styleClass="text" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.gwajae.accountbook.MonthtabController">
     <children>
         <Label id="monthdate" fx:id="date" layoutX="29.0" layoutY="14.0" text="10월 결산" />
         <Label id="inlabel" layoutX="30.0" layoutY="63.0" styleClass="typelabel" text="수입" />
