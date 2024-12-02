@@ -14,8 +14,6 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import org.gwajae.accountbook.model.Calendar;
-import org.gwajae.accountbook.model.CalendarService;
 
 import java.io.IOException;
 import java.net.URL;
@@ -178,10 +176,12 @@ public class MonthtabModalController implements Initializable {
 
     public void showDialog(Stage primaryStage) {
         try {
-            Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/org/accountbook/menu/view/monthtab-modal.fxml")));
+            String resource = "/org/gwajae/accountbook/";
+
+            Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(resource + "view/monthtab-modal.fxml")));
             Scene scene = new Scene(parent);
             Stage dialog = new Stage();
-            scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/org/accountbook/menu/style/monthtab-modal.css")).toString());
+            scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource(resource + "styles/monthtab-modal.css")).toString());
 
 
             dialog.initModality(Modality.WINDOW_MODAL);
@@ -192,4 +192,5 @@ public class MonthtabModalController implements Initializable {
             System.out.println(e.getMessage());
         }
     }
+
 }
