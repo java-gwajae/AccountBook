@@ -9,8 +9,6 @@ import javafx.scene.chart.BarChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.shape.Rectangle;
-import org.gwajae.accountbook.model.Calendar;
-import org.gwajae.accountbook.model.CalendarService;
 
 import java.net.URL;
 import java.text.DateFormat;
@@ -69,7 +67,7 @@ public class EntryModalController implements Initializable {
         series1.getData().add(new XYChart.Data<>(40, "test2"));
 
         this.graph.getData().add(series1);
-        this.category.getItems().addAll("월급","교통비", "식비비", "기타");
+        this.category.getItems().addAll("월급","교통", "식비", "기타");
 
         type.setOnAction(new EventHandler<ActionEvent>() {
 
@@ -87,7 +85,7 @@ public class EntryModalController implements Initializable {
         });
     }
 
-    public void loadDetailView(org.gwajae.accountbook.model.Calendar entry) {
+    public void loadDetailView(Calendar entry) {
         date.setText(entry.getDate());
         amount.setText(String.valueOf(entry.getAmount()));
         memo.setText(entry.getDescription());
