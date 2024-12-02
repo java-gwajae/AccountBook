@@ -12,8 +12,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import org.gwajae.accountbook.model.Calendar;
-import org.gwajae.accountbook.model.CalendarService;
 
 import java.io.IOException;
 import java.net.URL;
@@ -50,6 +48,17 @@ public class SideController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        try {
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/org/gwajae/accountbook/view/monthtab-view.fxml")));
+            root.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/org/gwajae/accountbook/styles/side.css")).toString());
+            monthview.getChildren().setAll(root);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        MonthtabController month = new MonthtabController();
+        month.setPrimaryStage(primaryStage);
+
         ToggleGroup group = new ToggleGroup();
 
         allselect.getStyleClass().remove("radio-button");
@@ -110,6 +119,7 @@ public class SideController implements Initializable {
         }
 
 
+
         CalendarService calendarService = new CalendarService();
         List<Calendar> calendarList = new ArrayList<>();
 
@@ -117,7 +127,7 @@ public class SideController implements Initializable {
 
         try {
             for (Calendar calendar : calendarList) {
-                if (calendar.getDate().equals(currentYear + "-" + currentMonth)) {
+                if (calendar.getMonth().equals(currentYear + "-" + currentMonth)) {
                     if(!selector.equals("전체")) {
                         if(!calendar.getType().equals(selector)) continue;
                     }
@@ -125,7 +135,8 @@ public class SideController implements Initializable {
                     Pane p = loader.load(getClass().getResource("/org/gwajae/accountbook/view/entry-view.fxml").openStream());
 
                     EntryController entryController = loader.getController();
-                    entryController.updateEntry(calendar, primaryStage);
+                    entryController.updateEntry(calendar);
+                    entryController.setPrimaryStage(primaryStage);
                     list.getChildren().add(p);
                 }
             }
