@@ -9,7 +9,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import org.gwajae.accountbook.model.Calendar;
 
 import java.io.IOException;
 import java.net.URL;
@@ -17,7 +16,6 @@ import java.util.Objects;
 import java.util.ResourceBundle;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class EntryController implements Initializable {
 
@@ -51,7 +49,7 @@ public class EntryController implements Initializable {
         });
     }
 
-    public void updateEntry(Calendar entry, Stage primaryStage) {
+    public void updateEntry(Calendar entry) {
         this.entry = entry;
         this.type.setText(entry.getType());
         this.category.setText(entry.getCategory());
@@ -59,7 +57,7 @@ public class EntryController implements Initializable {
 
         String pattern = "MM월 dd일";
         DateFormat df = new SimpleDateFormat(pattern);
-        this.date.setText(df.format(entry.getDate()));
+        this.date.setText(df.format(entry.getPureDate()));
 
         if(this.type.getText().equals("수입")) {
             this.amount.setText("+" + String.format("%,d", entry.getAmount()) + "원");
@@ -85,7 +83,7 @@ public class EntryController implements Initializable {
             FXMLLoader fxmlLoader = new FXMLLoader();
             Parent parent = fxmlLoader.load(getClass().getResource("/org/gwajae/accountbook/view/entry-modal.fxml").openStream());
             Scene scene = new Scene(parent);
-            scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/org/gwajae/accountbook/style/entry-modal.css")).toString());
+            scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/org/gwajae/accountbook/styles/entry-modal.css")).toString());
             Stage dialog = new Stage();
 
             dialog.initModality(Modality.WINDOW_MODAL);
