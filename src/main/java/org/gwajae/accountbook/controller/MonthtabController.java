@@ -4,8 +4,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import org.gwajae.accountbook.model.Calendar;
-import org.gwajae.accountbook.model.CalendarService;
 
 import java.net.URL;
 import java.time.LocalDate;
@@ -38,14 +36,14 @@ public class MonthtabController implements Initializable {
     }
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        currentMonth = LocalDate.now().getMonthValue();
+        currentYear = LocalDate.now().getYear();
+        updateMenu(currentMonth);
+
         more.setOnAction(e -> {
             MonthtabModalController modal = new MonthtabModalController();
             modal.showDialog(primaryStage);
         });
-
-        currentMonth = LocalDate.now().getMonthValue();
-        currentYear = LocalDate.now().getYear();
-        updateMenu(currentMonth);
     }
 
     public void updateMenu(int currentMonth) {
