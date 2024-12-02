@@ -3,6 +3,9 @@ package org.gwajae.accountbook.model;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Calendar {
     private String calendar_id;
     private String user_id;
@@ -64,6 +67,14 @@ public class Calendar {
 
     public String getDate() {
         return new SimpleDateFormat("yyyy-MM-dd").format(date);
+    }
+
+    public Date getPureDate() {
+        return date;
+    }
+
+    public String getMonth() {
+        return new SimpleDateFormat("yyyy-MM").format(date);
     }
 
     public void setDate(Date date) {
