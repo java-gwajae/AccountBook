@@ -1,4 +1,4 @@
-package org.gwajae.accountbook;
+package org.gwajae.accountbook.model;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
