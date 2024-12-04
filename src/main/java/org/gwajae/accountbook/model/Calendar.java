@@ -1,7 +1,4 @@
-package org.gwajae.accountbook.model;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
+package org.gwajae.accountbook;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -74,6 +71,10 @@ public class Calendar {
     }
 
     public String getMonth() {
+        return new SimpleDateFormat("MM").format(date);
+    }
+
+    public String getYearMonth() {
         return new SimpleDateFormat("yyyy-MM").format(date);
     }
 
