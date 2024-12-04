@@ -1,4 +1,4 @@
-package org.gwajae.accountbook;
+package org.gwajae.accountbook.model;
 
 import javafx.event.Event;
 import javafx.event.EventType;
