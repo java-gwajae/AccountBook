@@ -1,10 +1,15 @@
-package org.gwajae.accountbook.controller;
+package org.gwajae.accountbook;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -41,12 +46,13 @@ public class MonthtabController implements Initializable {
         updateMenu(currentMonth);
 
         more.setOnAction(e -> {
-            MonthtabModalController modal = new MonthtabModalController();
-            modal.showDialog(primaryStage);
+            showDialog(primaryStage, currentMonth);
         });
     }
 
     public void updateMenu(int currentMonth) {
+        this.currentMonth = currentMonth;
+
         int totalin = 0;
         int totalout = 0;
 
@@ -59,7 +65,7 @@ public class MonthtabController implements Initializable {
 
 
         for(Calendar calendar : calendarList) {
-            if(calendar.getDate().equals(currentYear + "-" + currentMonth)) {
+            if(calendar.getYearMonth().equals(currentYear + "-" + currentMonth)) {
                 if(Objects.equals(calendar.getType(), "수입")) {
                     totalin += calendar.getAmount();
                 } else if(Objects.equals(calendar.getType(), "지출")) {
@@ -72,5 +78,28 @@ public class MonthtabController implements Initializable {
         income.setText("+" + String.format("%,d", totalin) + "원");
         outcome.setText("-" + String.format("%,d", totalout) + "원");
 
+    }
+
+    public void showDialog(Stage primaryStage, int month) {
+        try {
+            String resource = "/org/gwajae/accountbook/";
+
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            Parent parent = fxmlLoader.load(getClass().getResource("/org/gwajae/accountbook/view/monthtab-modal.fxml").openStream());
+            Scene scene = new Scene(parent);
+            scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource(resource + "styles/monthtab-modal.css")).toString());
+            Stage dialog = new Stage();
+
+            dialog.initModality(Modality.WINDOW_MODAL);
+            dialog.initOwner(primaryStage);
+            dialog.setScene(scene);
+            dialog.show();
+
+            MonthtabModalController mc = fxmlLoader.getController();
+            mc.loadMonthDetail(month);
+
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }

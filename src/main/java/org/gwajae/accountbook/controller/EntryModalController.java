@@ -1,4 +1,4 @@
-package org.gwajae.accountbook.controller;
+package org.gwajae.accountbook;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -60,14 +60,8 @@ public class EntryModalController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        XYChart.Series<Integer, String> series1 = new XYChart.Series<>();
-        series1.setName("Fiat");
+        category.getItems().addAll("월급","교통", "식비", "기타");
 
-        series1.getData().add(new XYChart.Data<>(10, "test"));
-        series1.getData().add(new XYChart.Data<>(40, "test2"));
-
-        this.graph.getData().add(series1);
-        this.category.getItems().addAll("월급","교통", "식비", "기타");
 
         type.setOnAction(new EventHandler<ActionEvent>() {
 
@@ -80,6 +74,8 @@ public class EntryModalController implements Initializable {
                 }
 
                 buttonp = true;
+                count = 1;
+                total = 0;
                 loadDetailView(entry);
             }
         });
@@ -90,17 +86,12 @@ public class EntryModalController implements Initializable {
         amount.setText(String.valueOf(entry.getAmount()));
         memo.setText(entry.getDescription());
 
-        if(entry.getCategory().equals("월급")) {
-            category.getSelectionModel().select(1);
-        } else if(entry.getCategory().equals("교통비")) {
-            category.getSelectionModel().select(2);
-        } else if(entry.getCategory().equals("식비")) {
-            category.getSelectionModel().select(3);
-        } else {
-            category.getSelectionModel().select(4);
+        switch (entry.getCategory()) {
+            case "월급" : category.getSelectionModel().select(0); break;
+            case "교통" : category.getSelectionModel().select(1); break;
+            case "식비" : category.getSelectionModel().select(2); break;
+            case "기타" : category.getSelectionModel().select(3); break;
         }
-
-        this.entry = entry;
 
         if(!buttonp) {
             if( entry.getType().equals("수입")) {
@@ -110,21 +101,7 @@ public class EntryModalController implements Initializable {
             }
         }
 
-        if(t == 1) {
-            Node n = this.graph.lookup(".data0.chart-bar");
-            n.setStyle("-fx-bar-fill: #c9e1ff");
-            n = this.graph.lookup(".data1.chart-bar");
-            n.setStyle("-fx-bar-fill: #bbfad2");
-            this.icon.setStyle("-fx-fill : #c9e1ff ");
-            this.graphicon.setStyle("-fx-fill : #c9e1ff ");
-        } else {
-            Node n = this.graph.lookup(".data0.chart-bar");
-            n.setStyle("-fx-bar-fill: #ffdada");
-            n = this.graph.lookup(".data1.chart-bar");
-            n.setStyle("-fx-bar-fill: #bbfad2");
-            this.icon.setStyle("-fx-fill : #ffdada ");
-            this.graphicon.setStyle("-fx-fill : #ffdada");
-        }
+        this.entry = entry;
 
         CalendarService calendarService = new CalendarService();
         List<Calendar> calendarList = new ArrayList<>();
@@ -151,23 +128,53 @@ public class EntryModalController implements Initializable {
         double monthavg = (double)total / count;
         double thisavg = Double.parseDouble(amount.getText());
 
-        monthamount.setText("평균 " + this.type.getText() + " : " + String.valueOf((int)monthavg));
-
+        monthamount.setText("평균 " + this.type.getText() + " : " + String.format("%,d", (int)monthavg) + "원");
         String pattern = "MM월 dd일 : ";
         DateFormat df = new SimpleDateFormat(pattern);
-        thisamount.setText(df.format(entry.getDate()) + amount.getText());
+        thisamount.setText(df.format(entry.getPureDate()) + String.format("%,d", Integer.valueOf(amount.getText())) + "원");
 
         double diff = (monthavg - thisavg) / ((monthavg + thisavg) / 2) * 100;
         int diff2 = (int)Math.abs(diff);
 
         if(monthavg < thisavg) {
             avg.setText("+" + String.valueOf(diff2) +"%");
+            avg.setStyle("-fx-text-fill: #67bc73");
         } else if (monthavg > thisavg) {
             avg.setText("-" + String.valueOf(diff2) +"%");
+            avg.setStyle("-fx-text-fill: #ff4242");
         } else {
             avg.setText("0%");
         }
 
+        XYChart.Series<Integer, String> series1 = new XYChart.Series<>();
+        series1.setName("Fiat");
+
+        series1.getData().add(new XYChart.Data<>(Integer.valueOf(amount.getText()), "today"));
+        series1.getData().add(new XYChart.Data<>((int)monthavg, "month"));
+
+        graph.getData().add(series1);
+
+        if(t == 1) {
+            Node n = this.graph.lookup(".data0.chart-bar");
+            n.setStyle("-fx-bar-fill: #c9e1ff");
+            n = this.graph.lookup(".data1.chart-bar");
+            n.setStyle("-fx-bar-fill: #bbfad2");
+            this.icon.setStyle("-fx-fill : #c9e1ff ");
+            this.graphicon.setStyle("-fx-fill : #c9e1ff ");
+        } else {
+            Node n = this.graph.lookup(".data0.chart-bar");
+            n.setStyle("-fx-bar-fill: #ffdada");
+            n = this.graph.lookup(".data1.chart-bar");
+            n.setStyle("-fx-bar-fill: #bbfad2");
+            this.icon.setStyle("-fx-fill : #ffdada ");
+            this.graphicon.setStyle("-fx-fill : #ffdada");
+        }
+
         buttonp = false;
+    }
+
+    public org.gwajae.accountbook.Calendar getEntry() {
+        String cat = category.getValue().toString();
+        return new Calendar(entry.getCalendarId(), entry.getUserId(), type.getText(), cat, Integer.parseInt(amount.getText()), entry.getPureDate(), memo.getText());
     }
 }
