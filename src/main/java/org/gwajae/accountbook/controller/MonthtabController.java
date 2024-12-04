@@ -8,6 +8,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import org.gwajae.accountbook.model.Calendar;
+import org.gwajae.accountbook.model.CalendarService;
 
 import java.io.IOException;
 import java.net.URL;
