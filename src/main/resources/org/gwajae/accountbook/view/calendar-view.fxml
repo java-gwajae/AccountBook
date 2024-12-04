@@ -9,7 +9,7 @@
 <?import javafx.geometry.Insets?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller=""org.gwajae.accountbook.controller.CalendarController"
+            fx:controller="org.gwajae.accountbook.CalendarController"
             prefHeight="600" prefWidth="650.0" id="calendar">
     <top>
         <HBox spacing="10" alignment="CENTER_LEFT">

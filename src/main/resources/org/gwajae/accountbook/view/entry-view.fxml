@@ -7,7 +7,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="entry" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="170.0" prefWidth="350.0" styleClass="text" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller=""org.gwajae.accountbook.controller.EntryController">
+<AnchorPane id="entry" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="170.0" prefWidth="350.0" styleClass="text" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.gwajae.accountbook.EntryController">
     <children>
         <Label id="entrydate" fx:id="date" layoutX="20.0" layoutY="14.0" />
         <Label fx:id="type" alignment="CENTER" layoutX="124.0" layoutY="15.0" prefHeight="28.0" prefWidth="48.0" />
