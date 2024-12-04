@@ -81,7 +81,7 @@ public class CalendarModalController implements Initializable {
 
     @FXML
     public void submitButton(ActionEvent event) {
-        String calendar_id = "32";
+        String calendar_id = RandomStringUtils.randomAlphanumeric(8);
         String user_id = "1";
         int amount = Integer.parseInt(this.amount.getText());
         LocalDate localDate = datePicker.getValue();
