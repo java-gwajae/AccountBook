@@ -11,7 +11,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Rectangle?>
 
-<AnchorPane id="background" prefHeight="364.0" prefWidth="422.0" styleClass="text" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.gwajae.accountbook.MonthtabModalController">
+<AnchorPane id="background" prefHeight="364.0" prefWidth="422.0" styleClass="text" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.gwajae.accountbook.controller.MonthtabModalController">
 <children>
 <AnchorPane id="bartab" layoutX="16.0" layoutY="188.0" prefHeight="165.0" prefWidth="372.0">
     <children>
