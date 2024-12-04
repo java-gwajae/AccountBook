@@ -9,6 +9,8 @@ import javafx.scene.chart.BarChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.shape.Rectangle;
+import org.gwajae.accountbook.model.Calendar;
+import org.gwajae.accountbook.model.CalendarService;
 
 import java.net.URL;
 import java.text.DateFormat;
