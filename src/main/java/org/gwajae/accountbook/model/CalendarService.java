@@ -5,10 +5,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CalendarService {
-    private final String URL = "jdbc:mysql://localhost:3306/data";
+    private final String URL = "jdbc:mysql://localhost:3306/account_db";
     private final String DRIVER = "com.mysql.cj.jdbc.Driver";
     private final String USER = "root";
-    private final String PASS = "asdasdsad@##12555121";
+    private final String PASS = "1234";
 
     public void create(Calendar calendar) {
         String sql = "INSERT INTO calendar (" +
