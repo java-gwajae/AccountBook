@@ -1,17 +1,23 @@
 package org.gwajae.accountbook.controller;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.gwajae.accountbook.model.Calendar;
 import org.gwajae.accountbook.model.CalendarService;
+import org.gwajae.accountbook.model.ReloadEvent;
 
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -55,9 +61,7 @@ public class CalendarController implements Initializable {
         updateCalendar();
 
         calendarModal.setOnAction(e -> {
-            CalendarModalController modal = new CalendarModalController();
-            modal.showDialog(primaryStage);
-            updateCalendar();
+            showDialog(primaryStage);
         });
 
         prevButton.setOnAction(e -> {
@@ -66,7 +70,7 @@ public class CalendarController implements Initializable {
                 currentMonth = 12;
                 currentYear--;
             }
-            updateCalendar();
+            prevButton.fireEvent(new ReloadEvent(ReloadEvent.OPTIONS_ALL));
         });
 
         nextButton.setOnAction(e -> {
@@ -75,7 +79,7 @@ public class CalendarController implements Initializable {
                 currentMonth = 1;
                 currentYear++;
             }
-            updateCalendar();
+            nextButton.fireEvent(new ReloadEvent(ReloadEvent.OPTIONS_ALL));
         });
     }
 
@@ -207,5 +211,37 @@ public class CalendarController implements Initializable {
                 calendarGrid.add(dayBox, i % 7, 5);
             }
         }
+    }
+
+    public void showDialog(Stage primaryStage) {
+        try {
+            String resource = "/org/gwajae/accountbook/";
+
+            Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(resource + "view/calendar-modal.fxml")));
+            Scene scene = new Scene(parent);
+            Stage dialog = new Stage();
+
+            scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource(resource + "styles/calendar-modal.css")).toString());
+
+            dialog.initModality(Modality.WINDOW_MODAL);
+            dialog.initOwner(primaryStage);
+            dialog.setTitle("Calendar Input");
+            dialog.setScene(scene);
+            dialog.show();
+
+            dialog.setOnHidden(event -> {
+                calendarModal.fireEvent(new ReloadEvent(ReloadEvent.OPTIONS_ALL));
+            });
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public int getCurrentYear() {
+        return currentYear;
+    }
+
+    public int getCurrentMonth() {
+        return currentMonth;
     }
 }

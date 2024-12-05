@@ -13,6 +13,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -22,7 +23,6 @@ import org.gwajae.accountbook.model.CalendarService;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -52,7 +52,7 @@ public class CalendarModalController implements Initializable {
     @FXML
     private TextArea memoField;
 
-    ObservableList<String> list = FXCollections.observableArrayList("월급", "교통비", "식비", "기타");
+    ObservableList<String> list = FXCollections.observableArrayList("월급", "교통", "식비", "기타");
 
     public String type = "";
     private String category = "";
@@ -116,24 +116,4 @@ public class CalendarModalController implements Initializable {
         comboBox.setItems(list);
     }
 
-    // Show calendar modal
-    public void showDialog(Stage primaryStage) {
-        try {
-            String resource = "/org/gwajae/accountbook/";
-
-            Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(resource + "view/calendar-modal.fxml")));
-            Scene scene = new Scene(parent);
-            Stage dialog = new Stage();
-
-            scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource(resource + "styles/calendar-modal.css")).toString());
-
-            dialog.initModality(Modality.WINDOW_MODAL);
-            dialog.initOwner(primaryStage);
-            dialog.setTitle("Calendar Input");
-            dialog.setScene(scene);
-            dialog.show();
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-    }
 }

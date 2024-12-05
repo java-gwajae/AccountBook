@@ -15,13 +15,13 @@
     <children>
         <AnchorPane id="background" prefHeight="200.0" prefWidth="300.0">
             <children>
-                <Label id="date" fx:id="date" layoutX="33.0" layoutY="49.0" text="2024-11-05" />
+                <Label id="date" fx:id="date" layoutX="33.0" layoutY="49.0" />
                 <Button fx:id="type" layoutX="33.0" layoutY="88.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="65.0" textFill="#ffc3c3" />
             </children>
         </AnchorPane>
         <AnchorPane id="mpane" layoutX="25.0" layoutY="123.0" prefHeight="219.0" prefWidth="250.0">
             <children>
-                <BarChart fx:id="graph" alternativeRowFillVisible="false" barGap="11.0" categoryGap="4.0" horizontalGridLinesVisible="false" horizontalZeroLineVisible="false" layoutX="4.0" layoutY="53.0" prefHeight="150.0" prefWidth="243.0" verticalGridLinesVisible="false" verticalZeroLineVisible="false">
+                <BarChart fx:id="graph" alternativeRowFillVisible="false" animated="false" barGap="6.0" categoryGap="22.0" horizontalGridLinesVisible="false" horizontalZeroLineVisible="false" layoutX="4.0" layoutY="43.0" prefHeight="151.0" prefWidth="243.0" verticalGridLinesVisible="false" verticalZeroLineVisible="false">
                     <yAxis>
                         <CategoryAxis side="LEFT" style="-fx-border-color: white;" tickLabelsVisible="false" tickMarkVisible="false" />
                     </yAxis>
@@ -29,24 +29,24 @@
                         <NumberAxis minorTickVisible="false" style="-fx-border-color: WHITE;" tickLabelsVisible="false" tickMarkVisible="false" />
                     </xAxis>
                 </BarChart>
-                <TextField id="amount" fx:id="amount" layoutX="13.0" layoutY="14.0" prefHeight="39.0" prefWidth="145.0" text="156,235,0000" />
+                <TextField id="amount" fx:id="amount" layoutX="13.0" layoutY="14.0" prefHeight="39.0" prefWidth="145.0" />
                 <ComboBox id="category" fx:id="category" layoutX="157.0" layoutY="14.0" prefHeight="39.0" prefWidth="81.0" />
-                <Label fx:id="monthamount" layoutX="20.0" layoutY="169.0" text="달  평균 : 200,000">
+                <Label fx:id="monthamount" layoutX="18.0" layoutY="171.0">
                     <graphic>
                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#a7fcd7" height="7.0" stroke="BLACK" strokeType="INSIDE" width="8.0" />
                     </graphic>
                 </Label>
-                <Label fx:id="thisamount" layoutX="20.0" layoutY="186.0" text="10월2일 : 100,000">
+                <Label fx:id="thisamount" layoutX="18.0" layoutY="188.0">
                     <graphic>
                         <Rectangle fx:id="icon" arcHeight="5.0" arcWidth="5.0" fill="#a7fcd7" height="7.0" stroke="BLACK" strokeType="INSIDE" width="8.0" />
                     </graphic>
                 </Label>
-                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#a7fcd7" height="17.0" layoutX="154.0" layoutY="174.0" stroke="BLACK" strokeType="INSIDE" width="8.0" />
-                <Rectangle fx:id="graphicon" arcHeight="5.0" arcWidth="5.0" fill="#a7fcd7" height="9.0" layoutX="162.0" layoutY="182.0" stroke="BLACK" strokeType="INSIDE" width="8.0" />
-                <Label fx:id="avg" layoutX="176.0" layoutY="174.0" text="평균 -18% " />
+                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#a7fcd7" height="17.0" layoutX="186.0" layoutY="178.0" stroke="BLACK" strokeType="INSIDE" width="8.0" />
+                <Rectangle fx:id="graphicon" arcHeight="5.0" arcWidth="5.0" fill="#a7fcd7" height="9.0" layoutX="194.0" layoutY="186.0" stroke="BLACK" strokeType="INSIDE" width="8.0" />
+                <Label fx:id="avg" layoutX="208.0" layoutY="178.0" />
             </children>
         </AnchorPane>
         <Label id="memolabel" layoutX="25.0" layoutY="353.0" prefHeight="28.0" prefWidth="65.0" text="메모" />
-        <TextArea fx=id"memo" id="memo" layoutX="25.0" layoutY="378.0" prefHeight="127.0" prefWidth="250.0" wrapText="true" />
+        <TextArea id="memo" fx:id="memo" layoutX="25.0" layoutY="378.0" prefHeight="127.0" prefWidth="250.0" wrapText="true" />
     </children>
 </AnchorPane>

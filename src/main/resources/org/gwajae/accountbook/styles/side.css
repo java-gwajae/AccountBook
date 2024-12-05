@@ -28,6 +28,16 @@
     -fx-border-color: #4a4a4a;
 }
 
+.sort {
+    -fx-font-size : 11px;
+    -fx-text-fill: #c9c9c9;
+    -fx-background-image: null;
+}
+
+.sort:selected {
+    -fx-text-fill: #8a8a8a;
+}
+
 #entry {
     -fx-border-radius: 10 10 10 10;
     -fx-background-radius: 10 10 10 10;
@@ -111,5 +121,9 @@
 }
 
 #more {
+    -fx-background-color: transparent;
+}
+
+#order {
     -fx-background-color: transparent;
 }

@@ -5,9 +5,11 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
+import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -25,6 +27,12 @@ import java.util.ResourceBundle;
 
 public class SideController implements Initializable {
     @FXML
+    public RadioButton datesort;
+
+    @FXML
+    public RadioButton amountsort;
+
+    @FXML
     private AnchorPane monthview;
 
     @FXML
@@ -39,10 +47,16 @@ public class SideController implements Initializable {
     @FXML
     private RadioButton outcomeselect;
 
+    @FXML
+    private Button order;
+
     private int currentMonth;
     private int currentYear;
+    private boolean ascending = false;
 
     private Stage primaryStage;
+
+    private MonthtabController monthtabController;
 
     public void setPrimaryStage(Stage primaryStage) {
         this.primaryStage = primaryStage;
@@ -50,7 +64,27 @@ public class SideController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        ToggleGroup group = new ToggleGroup();
+        currentMonth = LocalDate.now().getMonthValue();
+        currentYear = LocalDate.now().getYear();
+
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            Pane p = fxmlLoader.load(getClass().getResource("/org/gwajae/accountbook/view/monthtab-view.fxml").openStream());
+            monthview.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/org/gwajae/accountbook/styles/side.css")).toString());
+
+            MonthtabController mcontroller = fxmlLoader.getController();
+            monthtabController = mcontroller;
+
+            monthview.getChildren().setAll(p);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        Image img = new Image(getClass().getResourceAsStream("/org/gwajae/accountbook/images/order.png"));
+        ImageView imgView = new ImageView(img);
+        order.setGraphic(imgView);
+
+        ToggleGroup typegroup = new ToggleGroup();
 
         allselect.getStyleClass().remove("radio-button");
         allselect.getStyleClass().add("toggle-button");
@@ -61,15 +95,26 @@ public class SideController implements Initializable {
         outcomeselect.getStyleClass().remove("radio-button");
         outcomeselect.getStyleClass().add("toggle-button");
 
-        allselect.setToggleGroup(group);
-        incomeselect.setToggleGroup(group);
-        outcomeselect.setToggleGroup(group);
+        allselect.setToggleGroup(typegroup);
+        incomeselect.setToggleGroup(typegroup);
+        outcomeselect.setToggleGroup(typegroup);
 
-        currentMonth = LocalDate.now().getMonthValue();
-        currentYear = LocalDate.now().getYear();
+        ToggleGroup sortgroup = new ToggleGroup();
+
+        amountsort.getStyleClass().remove("radio-button");
+        amountsort.getStyleClass().add("sort");
+
+        datesort.getStyleClass().remove("radio-button");
+        datesort.getStyleClass().add("sort");
+
+        amountsort.setToggleGroup(sortgroup);
+        datesort.setToggleGroup(sortgroup);
+
+
+        amountsort.setSelected(true);
+        allselect.setSelected(true);
 
         allselect.setOnAction(new EventHandler<ActionEvent>() {
-
             @Override
             public void handle(ActionEvent event) {
                 list.getChildren().clear();
@@ -95,11 +140,63 @@ public class SideController implements Initializable {
             }
         });
 
+        order.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                list.getChildren().clear();
+                if(ascending) {
+                    ascending = false;
+                } else {
+                    ascending = true;
+                }
+                sortedMenu();
+            }
+        });
+
         loadMenu();
     }
 
-    private void loadMenu() {
+    public void loadMenu() {
         String selector = "";
+
+        if (allselect.isSelected()) {
+            selector = "전체";
+        } else if (incomeselect.isSelected()) {
+            selector = "수입";
+        } else if (outcomeselect.isSelected()) {
+            selector = "지출";
+        }
+
+
+
+        CalendarService calendarService = new CalendarService();
+        List<Calendar> calendarList = new ArrayList<>();
+
+        calendarList = calendarService.read();
+
+        try {
+            for (Calendar calendar : calendarList) {
+                if (calendar.getYearMonth().equals(currentYear + "-" + currentMonth)) {
+                    if(!selector.equals("전체")) {
+                        if(!calendar.getType().equals(selector)) continue;
+                    }
+                    FXMLLoader loader = new FXMLLoader();
+                    Pane p = loader.load(getClass().getResource("/org/gwajae/accountbook/view/entry-view.fxml").openStream());
+                    EntryController entryController = loader.getController();
+                    entryController.setPrimaryStage(primaryStage);
+                    entryController.updateEntry(calendar);
+                    list.getChildren().add(p);
+
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void sortedMenu() {
+        String selector = "";
+        String sorttype = "";
 
         if (allselect.isSelected()) {
             selector = "전체";
@@ -113,24 +210,46 @@ public class SideController implements Initializable {
         CalendarService calendarService = new CalendarService();
         List<Calendar> calendarList = new ArrayList<>();
 
-        calendarList = calendarService.read();
+
+
+        if (amountsort.isSelected()) {
+            sorttype = "amount";
+        } else if (datesort.isSelected()) {
+            sorttype = "date";
+        }
+
+        if(ascending) {
+            calendarList = calendarService.sortread(false, sorttype);
+        } else {
+            calendarList = calendarService.sortread(true, sorttype);
+        }
 
         try {
             for (Calendar calendar : calendarList) {
-                if (calendar.getDate().equals(currentYear + "-" + currentMonth)) {
+                if (calendar.getYearMonth().equals(currentYear + "-" + currentMonth)) {
                     if(!selector.equals("전체")) {
                         if(!calendar.getType().equals(selector)) continue;
                     }
                     FXMLLoader loader = new FXMLLoader();
                     Pane p = loader.load(getClass().getResource("/org/gwajae/accountbook/view/entry-view.fxml").openStream());
-
                     EntryController entryController = loader.getController();
-                    entryController.updateEntry(calendar, primaryStage);
+                    entryController.setPrimaryStage(primaryStage);
+                    entryController.updateEntry(calendar);
                     list.getChildren().add(p);
+
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void reloadMenu(int newMonth, int newYear) {
+        currentMonth = newMonth;
+        currentYear = newYear;
+        list.getChildren().clear();
+        loadMenu();
+
+        monthtabController.updateMenu(newMonth);
     }
 }

@@ -30,6 +30,9 @@ public class MonthtabModalController implements Initializable {
     public Label diff;
 
     @FXML
+    public Label label;
+
+    @FXML
     private Label piedate;
 
     @FXML
@@ -76,23 +79,34 @@ public class MonthtabModalController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        currentMonth = LocalDate.now().getMonthValue();
         currentYear = LocalDate.now().getYear();
 
-        XYChart.Series<Integer, String> series1 = new XYChart.Series<>();
-        series1.setName("Fiat");
-
-        series1.getData().add(new XYChart.Data<>(10, "test"));
-        series1.getData().add(new XYChart.Data<>(40, "test2"));
-
-        barchart.getData().addAll(series1);
-
-        loadMonthDetail();
     }
 
-    public void loadMonthDetail() {
-        piedate.setText(String.valueOf(currentYear) + "/" + String.valueOf(currentMonth + 1));
+    public void loadMonthDetail(int month) {
+        currentMonth = month;
+        String monthlabel;
+
+        piedate.setText(String.valueOf(currentYear) + "/" + String.valueOf(currentMonth));
         bardate.setText(piedate.getText());
+
+        switch (currentMonth) {
+            case 1: monthlabel = "JANUARY"; break;
+            case 2: monthlabel = "FEBUARY"; break;
+            case 3: monthlabel = "MARCH"; break;
+            case 4: monthlabel = "APRIL"; break;
+            case 5: monthlabel = "MAY"; break;
+            case 6: monthlabel = "JUNE"; break;
+            case 7: monthlabel = "JULY"; break;
+            case 8: monthlabel = "AUGUST"; break;
+            case 9: monthlabel = "SEPTEMBER"; break;
+            case 10: monthlabel = "OCTOBER"; break;
+            case 11: monthlabel = "NOVEMBER"; break;
+            case 12: monthlabel = "DECEMBER"; break;
+            default: monthlabel = ""; break;
+        }
+
+        label.setText(monthlabel);
 
         int income = 0;
         int outcome = 0;
@@ -104,34 +118,33 @@ public class MonthtabModalController implements Initializable {
 
         int prevmonth = 0;
 
-        Node n = this.barchart.lookup(".data0.chart-bar");
-        n.setStyle("-fx-bar-fill: #ff8c8c");
-
-        n = this.barchart.lookup(".data1.chart-bar");
-        n.setStyle("-fx-bar-fill: #8aa8ff");
-
         CalendarService calendarService = new CalendarService();
         List<Calendar> calendarList = new ArrayList<>();
         calendarList = calendarService.read();
 
         for(Calendar calendar : calendarList) {
-            if(calendar.getType().equals("수입")) {
-                income += calendar.getAmount();
-            } else {
-                outcome += calendar.getAmount();
-                String category = calendar.getCategory();
-                switch (category) {
-                    case "교통비" : cat1 += calendar.getAmount(); break;
-                    case "식비" : cat2 += calendar.getAmount(); break;
-                    case "기타" : cat3 += calendar.getAmount(); break;
-                    default: break;
+            if (calendar.getYearMonth().equals(currentYear + "-" + currentMonth)) {
+                if(calendar.getType().equals("수입")) {
+                    income += calendar.getAmount();
+                } else {
+                    outcome += calendar.getAmount();
+                    String category = calendar.getCategory();
+                    switch (category) {
+                        case "교통" : cat1 += calendar.getAmount(); break;
+                        case "식비" : cat2 += calendar.getAmount(); break;
+                        case "기타" : cat3 += calendar.getAmount(); break;
+                        default: break;
+                    }
+                }
+            } else if(Integer.parseInt(calendar.getMonth()) == currentMonth -1) {
+                if(calendar.getType().equals("수입")) {
+                    prevmonth += calendar.getAmount();
+                } else {
+                    prevmonth -= calendar.getAmount();
                 }
             }
-
-            if(calendar.getDate().equals(currentMonth - 1)) {
-                prevmonth += calendar.getAmount();
-            }
         }
+
 
         category1.setText("교통비");
         category2.setText("식비");
@@ -161,7 +174,7 @@ public class MonthtabModalController implements Initializable {
         this.income.setText(String.format("%,d", income) + "₩");
         this.outcome.setText(String.format("%,d", outcome) + "₩");
 
-        double diff = (prevmonth - total) / ((prevmonth + total) / 2) * 100;
+        double diff = (double) (prevmonth - total) / ((double) (prevmonth + total) / 2) * 100;
         int diff2 = (int)Math.abs(diff);
 
         if(prevmonth < total) {
@@ -174,22 +187,19 @@ public class MonthtabModalController implements Initializable {
             this.diff.setText("0%");
         }
 
-    }
+        XYChart.Series<Integer, String> series1 = new XYChart.Series<>();
+        series1.setName("Fiat");
 
-    public void showDialog(Stage primaryStage) {
-        try {
-            Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/org/accountbook/menu/view/monthtab-modal.fxml")));
-            Scene scene = new Scene(parent);
-            Stage dialog = new Stage();
-            scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/org/accountbook/menu/style/monthtab-modal.css")).toString());
+        series1.getData().add(new XYChart.Data<>(outcome, "outcome"));
+        series1.getData().add(new XYChart.Data<>(income, "income"));
 
+        barchart.getData().addAll(series1);
 
-            dialog.initModality(Modality.WINDOW_MODAL);
-            dialog.initOwner(primaryStage);
-            dialog.setScene(scene);
-            dialog.show();
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
+        Node n = this.barchart.lookup(".data0.chart-bar");
+        n.setStyle("-fx-bar-fill: #ff8c8c");
+
+        n = this.barchart.lookup(".data1.chart-bar");
+        n.setStyle("-fx-bar-fill: #8aa8ff");
+
     }
 }

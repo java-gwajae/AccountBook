@@ -8,8 +8,7 @@
 }
 
 #background {
-    -fx-background-radius: 20 20 20 20;
-    -fx-border-radius: 20 20 20 20;
+
 }
 
 #bartab {
@@ -37,12 +36,14 @@
     -fx-text-fill: #ababab;
 }
 
-#bartotal {
+#bartotal  {
     -fx-font-size: 16;
+    -fx-font-weight: bold;
 }
 
 #pietotal {
     -fx-font-size: 16;
+    -fx-font-weight: bold;
 }
 
 #bardate {
@@ -80,3 +81,18 @@
 #outcomeicon {
     -fx-fill: #ff8c8c;
 }
+
+#monthlabel {
+    -fx-font-family: "SansSerif";
+    -fx-font-weight: bold;
+    -fx-font-size: 24;
+    -fx-text-fill: WHITE;
+    -fx-background-color: #b5ffcf;
+    -fx-background-radius : 10;
+}
+
+
+.default-color0.chart-pie { -fx-pie-color: #fcaf7e; }
+.default-color1.chart-pie { -fx-pie-color: #db9eff; }
+.default-color2.chart-pie { -fx-pie-color: #9effec; }
+
