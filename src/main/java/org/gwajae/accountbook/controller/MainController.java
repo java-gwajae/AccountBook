@@ -3,7 +3,6 @@ package org.gwajae.accountbook.controller;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import org.gwajae.accountbook.model.ReloadEvent;
@@ -12,6 +11,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
+import org.gwajae.model.ReloadEvent;
 
 public class MainController implements Initializable {
     @FXML
@@ -73,3 +73,4 @@ public class MainController implements Initializable {
         sideController.reloadMenu(calendarController.getCurrentMonth(), calendarController.getCurrentYear());
     }
 }
+

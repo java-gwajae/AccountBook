@@ -1,22 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.RadioButton?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="mainframe" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="400.0" styleClass="text" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.gwajae.accountbook.controller.SideController">
-    <children>
-        <AnchorPane fx:id="monthview" layoutX="22.0" layoutY="10.0" />
-        <Label id="maintext" layoutX="22.0" layoutY="178.0" text="최근 내역" />
-        <RadioButton fx:id="outcomeselect" layoutX="141.0" layoutY="215.0" mnemonicParsing="false" text="지출" />
-        <RadioButton fx:id="incomeselect" layoutX="80.0" layoutY="215.0" mnemonicParsing="false" text="수입" />
-        <RadioButton fx:id="allselect" layoutX="22.0" layoutY="215.0" mnemonicParsing="false" text="전체" />
-        <ScrollPane id="mainlist" fitToHeight="true" fitToWidth="true" layoutX="8.0" layoutY="249.0" prefHeight="400.0" prefWidth="385.0">
-            <content>
-                <VBox fx:id="list" prefHeight="170.0" prefWidth="383.0" spacing="10.0" translateX="12.0" translateY="5.0" />
-            </content></ScrollPane>
-    </children>
+
+<AnchorPane maxHeight="800" maxWidth="1200" prefHeight="700" prefWidth="1300" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="org.gwajae.accountbook.controller.MainController">
+   <children>
+      <AnchorPane layoutX="64.0" layoutY="50.0" prefHeight="600.0" prefWidth="650.0" fx:id="calendarView" />
+   </children>
+   <children>
+      <AnchorPane layoutX="750.0" layoutY="20.0" fx:id="sideView" />
+   </children>
 </AnchorPane>
-
