@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
+import org.gwajae.model.ReloadEvent;
 
 public class MainController implements Initializable {
     @FXML
