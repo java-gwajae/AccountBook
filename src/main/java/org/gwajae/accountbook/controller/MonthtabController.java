@@ -45,14 +45,14 @@ public class MonthtabController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         currentMonth = LocalDate.now().getMonthValue();
         currentYear = LocalDate.now().getYear();
-        updateMenu(currentMonth);
+        updateMenu(currentYear, currentMonth);
 
         more.setOnAction(e -> {
-            showDialog(primaryStage, currentMonth);
+            showDialog(primaryStage, currentYear, currentMonth);
         });
     }
 
-    public void updateMenu(int currentMonth) {
+    public void updateMenu(int currentYear, int currentMonth) {
         this.currentMonth = currentMonth;
 
         int totalin = 0;
@@ -82,7 +82,7 @@ public class MonthtabController implements Initializable {
 
     }
 
-    public void showDialog(Stage primaryStage, int month) {
+    public void showDialog(Stage primaryStage, int year, int month) {
         try {
             String resource = "/org/gwajae/accountbook/";
 
@@ -98,7 +98,7 @@ public class MonthtabController implements Initializable {
             dialog.show();
 
             MonthtabModalController mc = fxmlLoader.getController();
-            mc.loadMonthDetail(month);
+            mc.loadMonthDetail(year, month);
 
         } catch (IOException e) {
             System.out.println(e.getMessage());
