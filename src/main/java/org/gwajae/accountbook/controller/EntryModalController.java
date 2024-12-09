@@ -9,6 +9,8 @@ import javafx.scene.chart.BarChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import org.gwajae.accountbook.model.Calendar;
 import org.gwajae.accountbook.model.CalendarService;
 
@@ -22,6 +24,9 @@ import java.util.ResourceBundle;
 public class EntryModalController implements Initializable {
     @FXML
     private Button type;
+
+    @FXML
+    private Button deletebt;
 
     @FXML
     private ComboBox category;
@@ -79,6 +84,18 @@ public class EntryModalController implements Initializable {
                 count = 1;
                 total = 0;
                 loadDetailView(entry);
+            }
+        });
+
+        deletebt.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent event) {
+                CalendarService cs = new CalendarService();
+                cs.delete(entry);
+                Stage st = (Stage) deletebt.getScene().getWindow();
+                st.fireEvent(new WindowEvent(st, WindowEvent.WINDOW_CLOSE_REQUEST));
+                st.close();
             }
         });
     }
@@ -176,7 +193,7 @@ public class EntryModalController implements Initializable {
         buttonp = false;
     }
 
-    public org.gwajae.accountbook.model.Calendar getEntry() {
+    public org.gwajae.accountbook.Calendar getEntry() {
         String cat = category.getValue().toString();
         return new Calendar(entry.getCalendarId(), entry.getUserId(), type.getText(), cat, Integer.parseInt(amount.getText()), entry.getPureDate(), memo.getText());
     }
