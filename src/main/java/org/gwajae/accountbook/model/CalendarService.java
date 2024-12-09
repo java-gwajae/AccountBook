@@ -40,6 +40,25 @@ public class CalendarService {
         }
     }
 
+    public void delete(Calendar calendar) {
+        String sql = "DELETE FROM calendar WHERE calendar_id='" + calendar.getCalendarId() + "'";
+
+        try {
+            Class.forName(DRIVER);
+            Connection conn = DriverManager.getConnection(URL, USER, PASS);
+            PreparedStatement stmt = conn.prepareStatement(sql);
+
+            int result = stmt.executeUpdate();
+
+            System.out.println(result);
+
+            stmt.close();
+            conn.close();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
     public void update(Calendar calendar) {
         String sql = "UPDATE calendar SET user_id = ?, type = ?, category = ?, amount = ?, date = ?, description = ? WHERE calendar_id = ?";
 
