@@ -87,6 +87,7 @@ public class EntryModalController implements Initializable {
         date.setText(entry.getDate());
         amount.setText(String.valueOf(entry.getAmount()));
         memo.setText(entry.getDescription());
+        graph.getData().clear();
 
         switch (entry.getCategory()) {
             case "월급" : category.getSelectionModel().select(0); break;
@@ -175,7 +176,7 @@ public class EntryModalController implements Initializable {
         buttonp = false;
     }
 
-    public org.gwajae.accountbook.Calendar getEntry() {
+    public org.gwajae.accountbook.model.Calendar getEntry() {
         String cat = category.getValue().toString();
         return new Calendar(entry.getCalendarId(), entry.getUserId(), type.getText(), cat, Integer.parseInt(amount.getText()), entry.getPureDate(), memo.getText());
     }

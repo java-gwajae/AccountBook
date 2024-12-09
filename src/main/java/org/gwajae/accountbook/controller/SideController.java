@@ -250,6 +250,6 @@ public class SideController implements Initializable {
         list.getChildren().clear();
         loadMenu();
 
-        monthtabController.updateMenu(newMonth);
+        monthtabController.updateMenu(newYear, newMonth);
     }
 }
