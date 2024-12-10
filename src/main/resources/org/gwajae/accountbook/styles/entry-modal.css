@@ -105,3 +105,14 @@
 .chart-plot-background {
     -fx-background-color: transparent;
 }
+
+#delete {
+    -fx-padding: 4px 10px;
+    -fx-background-radius: 8px;
+    -fx-max-height: 20px;
+    -fx-background-color: white;
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+    -fx-alignment: center;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 4, 0, 2, 2);
+}
