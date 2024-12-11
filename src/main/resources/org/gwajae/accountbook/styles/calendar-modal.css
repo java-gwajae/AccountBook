@@ -35,11 +35,12 @@
 }
 
 #formCheck {
+    -fx-border-radius: 100px;
+    -fx-background-radius: 100px;
     -fx-pref-width: 40px;
     -fx-pref-height: 18px;
     -fx-font-size: 10px;
     -fx-padding: 0px 0px 4px 0px;
-    -fx-border-radius: 100px;
     -fx-alignment: center;
     -fx-end-margin: 8px;
     -fx-border-style: none;
@@ -105,4 +106,14 @@
 
 #cancel:hover {
     -fx-opacity: 0.7;
+}
+
+.outcome-button:selected {
+    -fx-text-fill: #eb7070;
+    -fx-background-color: #ffdada;
+}
+
+.income-button:selected {
+    -fx-text-fill: #4c99f8;
+    -fx-background-color: #c9e1ff;
 }

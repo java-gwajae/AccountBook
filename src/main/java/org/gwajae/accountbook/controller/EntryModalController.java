@@ -64,12 +64,11 @@ public class EntryModalController implements Initializable {
     private int total = 0;
     private boolean buttonp = false;
 
+    ObservableList<String> outcomelist = FXCollections.observableArrayList("교통", "식비", "기타");
+    ObservableList<String> incomelist = FXCollections.observableArrayList("월급", "기타");
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        category.getItems().addAll("월급","교통", "식비", "기타");
-
-
         type.setOnAction(new EventHandler<ActionEvent>() {
 
             @Override
@@ -106,12 +105,16 @@ public class EntryModalController implements Initializable {
         memo.setText(entry.getDescription());
         graph.getData().clear();
 
-        switch (entry.getCategory()) {
-            case "월급" : category.getSelectionModel().select(0); break;
-            case "교통" : category.getSelectionModel().select(1); break;
-            case "식비" : category.getSelectionModel().select(2); break;
-            case "기타" : category.getSelectionModel().select(3); break;
+        if(entry.getType().equals("수입")) {
+            category.setItems(incomelist);
+        } else {
+            category.setItems(outcomelist);
         }
+
+
+        category.getSelectionModel().select(entry.getCategory());
+
+
 
         if(!buttonp) {
             if( entry.getType().equals("수입")) {

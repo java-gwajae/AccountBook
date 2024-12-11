@@ -52,7 +52,8 @@ public class CalendarModalController implements Initializable {
     @FXML
     private TextArea memoField;
 
-    ObservableList<String> list = FXCollections.observableArrayList("월급", "교통", "식비", "기타");
+    ObservableList<String> outcomelist = FXCollections.observableArrayList("교통", "식비", "기타");
+    ObservableList<String> incomelist = FXCollections.observableArrayList("월급", "기타");
 
     public String type = "";
     private String category = "";
@@ -61,16 +62,13 @@ public class CalendarModalController implements Initializable {
     @FXML
     public void selectType(ActionEvent event) {
         if(incomeButton.isSelected()) {
-            incomeButton.setTextFill(Color.web("#39a4e0"));
-            incomeButton.setBackground(new Background(new BackgroundFill(Color.web("#D7EDF9"), new CornerRadii(100), Insets.EMPTY)));
-
             type = "수입";
+            comboBox.setItems(incomelist);
         } else if(outcomeButton.isSelected()) {
-            outcomeButton.setTextFill(Color.web("#EC4646"));
-            outcomeButton.setBackground(new Background(new BackgroundFill(Color.web("#FACCCC"), new CornerRadii(100), Insets.EMPTY)));
-
             type = "지출";
+            comboBox.setItems(outcomelist);
         }
+
     }
 
     // Chang ComboBox
@@ -81,7 +79,7 @@ public class CalendarModalController implements Initializable {
 
     @FXML
     public void submitButton(ActionEvent event) {
-        String calendar_id = RandomStringUtils.randomAlphanumeric(8);
+        String calendar_id = "34";
         String user_id = "1";
         int amount = Integer.parseInt(this.amount.getText());
         LocalDate localDate = datePicker.getValue();
@@ -100,6 +98,7 @@ public class CalendarModalController implements Initializable {
 
         cs.create(new Calendar(calendar_id, user_id, type, category, amount, date, memo));
 
+
         Stage stage = (Stage) submit.getScene().getWindow();
         stage.close();
     }
@@ -113,7 +112,14 @@ public class CalendarModalController implements Initializable {
     // ComboBox setting
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        comboBox.setItems(list);
+        ToggleGroup typegroup = new ToggleGroup();
+
+        incomeButton.setToggleGroup(typegroup);
+        outcomeButton.setToggleGroup(typegroup);
+
+
+        incomeButton.getStyleClass().add("income-button");
+        outcomeButton.getStyleClass().add("outcome-button");
     }
 
 }
